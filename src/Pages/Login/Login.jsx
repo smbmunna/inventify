@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
+import { useState } from 'react';
 
 
 const Login = () => {
-    const { user } = useAuth();
+    const { loginUser } = useAuth();
+    const [loginError, setLoginError]= useState('');
+
+    //Redirect user to desired path
+    const location = useLocation();
+    const navigate = useNavigate();
     
     const handleLogin = event => {
         event.preventDefault();
@@ -13,7 +19,16 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
+        setLoginError('');
+
+        loginUser(email, password)
+        .then(res=>{
+            console.log('Login success: ', res.user);
+            navigate(location.state ? location.state : '/')
+        })
+        .catch(err=>{
+            setLoginError(err.message);
+        })
     }
 
     
@@ -50,8 +65,8 @@ const Login = () => {
                                     <FcGoogle className="text-3xl" />  Google Login
                                 </button>
                             </div>
-                            <p className='text-red-400 text-center font-bold'>
-                               
+                            <p className='text-red-50 text-center font-bold'>
+                               {loginError}
                             </p>
                         </form>
                     </div>
