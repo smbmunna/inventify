@@ -1,14 +1,21 @@
 import { useForm } from "react-hook-form";
-
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const CreateShop = () => {
+    const axiosPublic= useAxiosPublic();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        //console.log(data);
+        axiosPublic.post('/shops', data)
+        .then(res=>{
+            console.log(res);
+        })
+    }
 
     return (
         <div className="grid">
