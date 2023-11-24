@@ -6,6 +6,7 @@ const Navbar = () => {
         <>
             <Link className="btn mx-2" to='/login'>Login</Link>
             <Link className="btn mx-2" to='/registration'>Registration</Link>
+            <Link className="btn mx-2" to='/createShop'>Create Shop</Link>
             
         </>
     return (

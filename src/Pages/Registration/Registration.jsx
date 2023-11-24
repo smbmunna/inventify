@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import axios from "axios";
 
 
 const Registration = () => {
     const { setUser, user, createUser, updateUser } = useAuth();
     const [regError, setRegError] = useState('');
+    const axiosPublic= useAxiosPublic();
 
     const navigate = useNavigate();
 
@@ -36,8 +39,19 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 if (result.user.email) {
+                    const userInfo={
+                        name: name,
+                        email: email,
+                    }
                     updateUser(name, photo)
                         .then(() => {
+
+                            
+                            //create user on our database also
+                            axiosPublic.post('/users', userInfo)
+                            .then(res=>console.log(res.data))
+
+
                             console.log('User Created and Profile updated');
                             setUser(result.user);
                             navigate('/login');
