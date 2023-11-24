@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
 
 const CreateShop = () => {
-    const axiosPublic= useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
+    const {user}= useAuth();
     const {
         register,
         handleSubmit,
@@ -12,9 +14,23 @@ const CreateShop = () => {
     const onSubmit = (data) => {
         //console.log(data);
         axiosPublic.post('/shops', data)
-        .then(res=>{
-            console.log(res);
-        })
+            .then(res => {
+                console.log(res.data);
+                if(res.data.insertedId){
+                    //send user info and shop info to server to update user collection 
+                    const userInfo={
+                        email: user?.email, 
+                        role: "manager", 
+                        shopId: res.data.insertedId, 
+                        shopInfo: data
+                    }
+                    axiosPublic.put('/users', userInfo)
+                    .then(res=>{
+                        console.log('user info updated: ', res.data);
+                    })
+                }
+
+            })
     }
 
     return (
@@ -29,7 +45,7 @@ const CreateShop = () => {
                     defaultValue=""
                     placeholder="Shop Name"
                     className="input input-bordered w-full max-w-xs"
-                    {...register("shop_name", { required: true })}
+                    {...register("shopName", { required: true })}
                 />
                 {errors.shop_name && <span className="text-red-500 mx-2">Shop Name is required</span>}
 
@@ -42,7 +58,7 @@ const CreateShop = () => {
                     defaultValue=""
                     placeholder="Shop Logo"
                     className="input input-bordered w-full max-w-xs"
-                    {...register("shop_logo", { required: true })}
+                    {...register("shopLogo", { required: true })}
                 />
                 {errors.shop_logo && <span className="text-red-500 mx-2">Shop Logo is required</span>}
 
@@ -55,7 +71,7 @@ const CreateShop = () => {
                     defaultValue=""
                     placeholder="Shop Description"
                     className="textarea textarea-bordered w-full max-w-xs"
-                    {...register("shop_info", { required: true })}
+                    {...register("shopInfo", { required: true })}
                 />
                 {errors.shop_info && <span className="text-red-500 mx-2">Shop Info is required</span>}
 
@@ -67,7 +83,7 @@ const CreateShop = () => {
                     defaultValue=""
                     placeholder="Shop Location"
                     className="input input-bordered w-full max-w-xs"
-                    {...register("shop_location", { required: true })}
+                    {...register("shopLocation", { required: true })}
                 />
                 {errors.shop_location && <span className="text-red-500 mx-2">Shop Location is required</span>}
 
@@ -80,7 +96,7 @@ const CreateShop = () => {
                     defaultValue=""
                     placeholder="Owner Email"
                     className="input input-bordered w-full max-w-xs"
-                    {...register("owner_email", { required: true })}
+                    {...register("ownerEmail", { required: true })}
                 />
                 {errors.owner_email && <span className="text-red-500 mx-2">Owner Email is required</span>}
 
@@ -93,10 +109,16 @@ const CreateShop = () => {
                     defaultValue=""
                     placeholder="Owner Name"
                     className="input input-bordered w-full max-w-xs"
-                    {...register("owner_name", { required: true })}
+                    {...register("ownerName", { required: true })}
                 />
                 {errors.owner_name && <span className="text-red-500 mx-2">Owner Name is required</span>}
-
+                
+                <input
+                    type="hidden"
+                    defaultValue="3"
+                    className="input input-bordered w-full max-w-xs"
+                    {...register("productLimit", { required: true })}
+                />
 
                 <br />
                 <input className="btn bg-[#78bc16] w-20 my-4" type="submit" />
