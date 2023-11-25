@@ -4,6 +4,7 @@ const Dashboard = () => {
     const links = <>
         <li><NavLink to='/dashboard/addProduct'>Add Product</NavLink></li>
         <li><NavLink to='/dashboard/salesCollection'>Sales Collection</NavLink></li>
+        <li><NavLink to='/dashboard/allProducts'>All Products</NavLink></li>
     </>
     return (
         <div className="gap-10 ">

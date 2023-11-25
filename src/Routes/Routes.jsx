@@ -12,6 +12,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import SalesCollection from "../Pages/Dashboard/SalesCollection/SalesCollection";
 import PrivateRoutes from "./PrivateRoutes";
+import AllProducts from "../Pages/Dashboard/AllProducts/AllProducts";
 
 
 export const router = createBrowserRouter([
@@ -47,9 +48,13 @@ export const router = createBrowserRouter([
                 element: <PrivateRoutes><AddProduct/></PrivateRoutes>
             },
             {
+                path: 'allProducts',
+                element: <PrivateRoutes> <AllProducts/></PrivateRoutes>
+            },
+            {
                 path: 'salesCollection',
                 element: <SalesCollection/>
-            }
+            }, 
         ]
     }
 ]);
