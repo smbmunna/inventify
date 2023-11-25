@@ -8,6 +8,8 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Registration from "../Pages/Registration/Registration";
 import Login from "../Pages/Login/Login";
 import CreateShop from "../Pages/CreateShop/CreateShop";
+import Dashboard from "../Layout/Dashboard/Dashboard";
+import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 
 
 export const router = createBrowserRouter([
@@ -31,6 +33,16 @@ export const router = createBrowserRouter([
             {
                 path: 'createShop',
                 element: <CreateShop/>
+            }
+        ]
+    },
+    {
+        path:'/dashboard',
+        element: <Dashboard/>,
+        children: [
+            {
+                path:'addproduct',
+                element: <AddProduct/>
             }
         ]
     }
