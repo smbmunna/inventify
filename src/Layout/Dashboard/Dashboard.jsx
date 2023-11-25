@@ -2,9 +2,8 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     const links = <>
-        <li><NavLink to='/dashboard/addProduct'>
-            Add Product</NavLink>
-        </li>
+        <li><NavLink to='/dashboard/addProduct'>Add Product</NavLink></li>
+        <li><NavLink to='/dashboard/salesCollection'>Sales Collection</NavLink></li>
     </>
     return (
         <div className="gap-10 ">

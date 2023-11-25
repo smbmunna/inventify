@@ -10,6 +10,8 @@ import Login from "../Pages/Login/Login";
 import CreateShop from "../Pages/CreateShop/CreateShop";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
+import SalesCollection from "../Pages/Dashboard/SalesCollection/SalesCollection";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 export const router = createBrowserRouter([
@@ -42,7 +44,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path:'addproduct',
-                element: <AddProduct/>
+                element: <PrivateRoutes><AddProduct/></PrivateRoutes>
+            },
+            {
+                path: 'salesCollection',
+                element: <SalesCollection/>
             }
         ]
     }

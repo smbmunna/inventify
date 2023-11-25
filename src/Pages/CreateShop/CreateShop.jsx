@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 
+
+
 const CreateShop = () => {
     const axiosPublic = useAxiosPublic();
-    const {user}= useAuth();
+    const {user}= useAuth();    
+    //console.log(user);
     const {
         register,
         handleSubmit,
@@ -47,7 +50,7 @@ const CreateShop = () => {
                     className="input input-bordered w-full max-w-xs"
                     {...register("shopName", { required: true })}
                 />
-                {errors.shop_name && <span className="text-red-500 mx-2">Shop Name is required</span>}
+                {errors.shopName && <span className="text-red-500 mx-2">Shop Name is required</span>}
 
 
                 <label className="label">
@@ -60,7 +63,7 @@ const CreateShop = () => {
                     className="input input-bordered w-full max-w-xs"
                     {...register("shopLogo", { required: true })}
                 />
-                {errors.shop_logo && <span className="text-red-500 mx-2">Shop Logo is required</span>}
+                {errors.shopLogo && <span className="text-red-500 mx-2">Shop Logo is required</span>}
 
 
                 <label className="label">
@@ -73,7 +76,7 @@ const CreateShop = () => {
                     className="textarea textarea-bordered w-full max-w-xs"
                     {...register("shopInfo", { required: true })}
                 />
-                {errors.shop_info && <span className="text-red-500 mx-2">Shop Info is required</span>}
+                {errors.shopInfo && <span className="text-red-500 mx-2">Shop Info is required</span>}
 
                 <label className="label">
                     <span className="label-text">Shop Location</span>
@@ -85,7 +88,7 @@ const CreateShop = () => {
                     className="input input-bordered w-full max-w-xs"
                     {...register("shopLocation", { required: true })}
                 />
-                {errors.shop_location && <span className="text-red-500 mx-2">Shop Location is required</span>}
+                {errors.shopLocation && <span className="text-red-500 mx-2">Shop Location is required</span>}
 
 
                 <label className="label">
@@ -98,7 +101,7 @@ const CreateShop = () => {
                     className="input input-bordered w-full max-w-xs"
                     {...register("ownerEmail", { required: true })}
                 />
-                {errors.owner_email && <span className="text-red-500 mx-2">Owner Email is required</span>}
+                {errors.ownerEmail && <span className="text-red-500 mx-2">Owner Email is required</span>}
 
 
                 <label className="label">
@@ -111,7 +114,7 @@ const CreateShop = () => {
                     className="input input-bordered w-full max-w-xs"
                     {...register("ownerName", { required: true })}
                 />
-                {errors.owner_name && <span className="text-red-500 mx-2">Owner Name is required</span>}
+                {errors.ownerName && <span className="text-red-500 mx-2">Owner Name is required</span>}
                 
                 <input
                     type="hidden"
