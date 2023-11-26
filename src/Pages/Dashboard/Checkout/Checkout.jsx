@@ -4,7 +4,7 @@ import useCart from "../../../hooks/useCart";
 
 
 const Checkout = () => {
-    const [cart, isLoading] = useCart();
+    const [cart, isLoading, refetch] = useCart();
     const axiosPublic = useAxiosPublic();
     //console.log(cart);
     if (isLoading) {
@@ -23,17 +23,17 @@ const Checkout = () => {
         return currentTimeString;
     }
 
-    const handleGetPaid = product => {
+    const handleGetPaid = async (product) => {
         const productInfo = {
             ...product,
             addDate: getCurrentDate(),
             addTime: getCurrenttime()
         }
-        axiosPublic.post(`/sales`, productInfo)
+        await axiosPublic.post(`/sales`, productInfo)
             .then(res => {
                 if (res.data.insertedId) {
                     //increase sale count of this product
-                    axiosPublic.put(`/product/update/${product._id}`, { saleCount: product.productQty })
+                    axiosPublic.put(`/product/update/${product._id}`, { saleCount: parseInt(product.saleCount)+parseInt(product.productQty) })
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
                                 Swal.fire({
@@ -44,10 +44,13 @@ const Checkout = () => {
                                     timer: 1500
                                 });
                             }
+                            //increase sale count of this product
+                            axiosPublic.put(`/product/update/${product._id}`, {productQty: parseInt(product.productQty) - parseInt(product.productQty)})
                         })
 
                 }
             })
+            refetch();
     }
 
     return (
