@@ -15,6 +15,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AllProducts from "../Pages/Dashboard/AllProducts/AllProducts";
 import UpdateProduct from "../Pages/Dashboard/UpdateProduct/UpdateProduct";
 import Checkout from "../Pages/Dashboard/Checkout/Checkout";
+import Subscription from "../Pages/Dashboard/Subscription/Subscription";
 
 
 export const router = createBrowserRouter([
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             {
                 path:'checkout',
                 element: <PrivateRoutes><Checkout/></PrivateRoutes>
+            },
+            {
+                path:'subscription',
+                element: <PrivateRoutes><Subscription/></PrivateRoutes>
             }
         ]
     }
