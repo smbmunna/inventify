@@ -5,6 +5,7 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/addProduct'>Add Product</NavLink></li>
         <li><NavLink to='/dashboard/salesCollection'>Sales Collection</NavLink></li>
         <li><NavLink to='/dashboard/allProducts'>All Products</NavLink></li>
+        <li><NavLink to='/dashboard/checkout'>Check Out</NavLink></li>
     </>
     return (
         <div className="gap-10 ">
