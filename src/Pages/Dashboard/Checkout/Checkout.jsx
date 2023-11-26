@@ -12,35 +12,42 @@ const Checkout = () => {
     }
 
     //get current date and time
-    const getCurrentDate= ()=>{
+    const getCurrentDate = () => {
         const currentDate = new Date();
         const currentDateString = currentDate.toLocaleDateString();
         return currentDateString;
     }
-    const getCurrenttime= ()=>{
+    const getCurrenttime = () => {
         const currentDate = new Date();
         const currentTimeString = currentDate.toLocaleTimeString();
         return currentTimeString;
     }
 
-    const handleGetPaid = product => {               
-        const productInfo={
-            ...product, 
-            addDate: getCurrentDate(), 
+    const handleGetPaid = product => {
+        const productInfo = {
+            ...product,
+            addDate: getCurrentDate(),
             addTime: getCurrenttime()
         }
-        axiosPublic.post(`/sales`,productInfo)
-        .then(res=>{
-            if(res.data.insertedId){
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Product added to sales collection.",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
-        })
+        axiosPublic.post(`/sales`, productInfo)
+            .then(res => {
+                if (res.data.insertedId) {
+                    //increase sale count of this product
+                    axiosPublic.put(`/product/update/${product._id}`, { saleCount: product.productQty })
+                        .then(res => {
+                            if (res.data.modifiedCount > 0) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Product added to sales collection.",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        })
+
+                }
+            })
     }
 
     return (
