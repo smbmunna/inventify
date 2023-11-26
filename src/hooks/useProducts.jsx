@@ -5,14 +5,14 @@ import useAuth from '../hooks/useAuth';
 const useProducts = () => {
     const axiosPublic= useAxiosPublic();
     const {user}= useAuth();
-    const {data: products=[], isLoading}= useQuery({
+    const {data: products=[], isLoading, refetch}= useQuery({
         queryKey: ['products'], 
         queryFn: async ()=>{
             const res= await axiosPublic.get(`/products/${user.email}`);
             return res.data;             
         }
     })
-    return [products, isLoading]    
+    return [products, isLoading, refetch]    
 };
 
 export default useProducts;

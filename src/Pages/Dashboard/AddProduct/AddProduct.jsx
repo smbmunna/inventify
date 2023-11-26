@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
+    const navigate= useNavigate();
     //console.log(user);
     const {
         register,
@@ -35,7 +38,16 @@ const AddProduct = () => {
                 }                
                 axiosPublic.post('/products', productInfo)
                 .then(res=>{
-                    console.log(res.data);
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Product added successfully!",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          navigate('/dashboard/allProducts');
+                    }
                 })
                 
             });

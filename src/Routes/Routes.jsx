@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
             {
                 path: 'updateProduct/:id',
                 element:<PrivateRoutes> <UpdateProduct/></PrivateRoutes>,
-                loader: ({params})=>fetch(`http://localhost:5000/product/${params.id}`)
+                loader: ({params})=>fetch(`https://inventify-server.vercel.app/product/${params.id}`)
             }
         ]
     }
