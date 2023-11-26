@@ -29,19 +29,17 @@ const AddProduct = () => {
 
     const onSubmit = async  (data) => {
         const imageFile = {image: data.productImage[0]};
-        //console.log(data.productImage[0]);
         const res= await axiosPublic.post(image_hosting_api, imageFile,{
             headers: {
                 'content-type': 'multipart/form-data'
             }
         });
-        //console.log(res.data);
-        //return
+        const imageLink= res.data.data. display_url;
         axiosPublic.get(`/shops/${user.email}`)
-            .then(res => {
+            .then(res => {                                                
                 const productInfo = {
                     ...data,
-                    productImageLink: res.data.data.display_url,
+                    productImageLink:imageLink,
                     shopId: res.data._id,
                     shopName: res.data.shopName,
                     userEmail: res.data.ownerEmail,
