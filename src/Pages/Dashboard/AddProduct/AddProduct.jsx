@@ -7,8 +7,12 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     //console.log(user);
+    //------------------For image hosting-------------------------
+    const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+    //------------------Form submission-------------------------
     const {
         register,
         handleSubmit,
@@ -23,10 +27,18 @@ const AddProduct = () => {
     }
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async  (data) => {
+        // const imageFile = data.productImage[0];
+        // console.log(imageFile);
+        // const res= await axiosPublic.post(image_hosting_api, imageFile, {
+        //     headers: {
+        //         'content-type': 'multipart/form-data'
+        //     }
+        // });
+        //console.log(res.data);
+        //return
         axiosPublic.get(`/shops/${user.email}`)
             .then(res => {
-                //console.log(res.data);
                 const productInfo = {
                     ...data,
                     shopId: res.data._id,
@@ -34,22 +46,22 @@ const AddProduct = () => {
                     userEmail: res.data.ownerEmail,
                     sellingPrice: data.costPrice + (7.5 * data.costPrice / 100) + (data.profitMargin * data.costPrice / 100),
                     productAddDate: getCurrentDate(),
-                    saleCount: 0, 
-                }                
+                    saleCount: 0,
+                }
                 axiosPublic.post('/products', productInfo)
-                .then(res=>{
-                    if(res.data.insertedId){
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Product added successfully!",
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                          navigate('/dashboard/allProducts');
-                    }
-                })
-                
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Product added successfully!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/dashboard/allProducts');
+                        }
+                    })
+
             });
 
 
@@ -79,10 +91,10 @@ const AddProduct = () => {
                     <span className="label-text">Product Image</span>
                 </label>
                 <input
-                    type="text"
+                    type="file"
                     defaultValue=""
                     placeholder="Product Image"
-                    className="input input-bordered w-full max-w-xs"
+                    className="file-input file-input-bordered w-full max-w-xs"
                     {...register("productImage", { required: true })}
                 />
                 {errors.productImage && <span className="text-red-500 mx-2">Product Image is required</span>}

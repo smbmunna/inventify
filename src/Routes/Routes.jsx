@@ -14,6 +14,7 @@ import SalesCollection from "../Pages/Dashboard/SalesCollection/SalesCollection"
 import PrivateRoutes from "./PrivateRoutes";
 import AllProducts from "../Pages/Dashboard/AllProducts/AllProducts";
 import UpdateProduct from "../Pages/Dashboard/UpdateProduct/UpdateProduct";
+import Checkout from "../Pages/Dashboard/Checkout/Checkout";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
                 path: 'updateProduct/:id',
                 element:<PrivateRoutes> <UpdateProduct/></PrivateRoutes>,
                 loader: ({params})=>fetch(`https://inventify-server.vercel.app/product/${params.id}`)
+            },
+            {
+                path:'checkout',
+                element: <Checkout/>
             }
         ]
     }
