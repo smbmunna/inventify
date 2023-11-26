@@ -3,16 +3,17 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
     const { loginUser } = useAuth();
-    const [loginError, setLoginError]= useState('');
+    const [loginError, setLoginError] = useState('');
 
     //Redirect user to desired path
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -22,19 +23,22 @@ const Login = () => {
         setLoginError('');
 
         loginUser(email, password)
-        .then(res=>{
-            console.log('Login success: ', res.user);
-            navigate(location.state ? location.state : '/')
-        })
-        .catch(err=>{
-            setLoginError(err.message);
-        })
+            .then(res => {
+                console.log('Login success: ', res.user);
+                navigate(location.state ? location.state : '/')
+            })
+            .catch(err => {
+                setLoginError(err.message);
+            })
     }
 
-    
+
 
     return (
         <div>
+            <Helmet>
+                <title>Inventify | Login</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -60,13 +64,13 @@ const Login = () => {
                             </div>
                             <div>
                                 <button
-                                    
+
                                     className="btn text-white rounded-none bg-[#78bc16] mt-4 w-full ">
                                     <FcGoogle className="text-3xl" />  Google Login
                                 </button>
                             </div>
                             <p className='text-red-50 text-center font-bold'>
-                               {loginError}
+                                {loginError}
                             </p>
                         </form>
                     </div>

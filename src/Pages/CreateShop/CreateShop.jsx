@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 
 const CreateShop = () => {
     const axiosPublic = useAxiosPublic();
-    const {user}= useAuth();    
+    const { user } = useAuth();
     //console.log(user);
     const {
         register,
@@ -19,18 +20,18 @@ const CreateShop = () => {
         axiosPublic.post('/shops', data)
             .then(res => {
                 console.log(res.data);
-                if(res.data.insertedId){
+                if (res.data.insertedId) {
                     //send user info and shop info to server to update user collection 
-                    const userInfo={
-                        email: user?.email, 
-                        role: "manager", 
-                        shopId: res.data.insertedId, 
+                    const userInfo = {
+                        email: user?.email,
+                        role: "manager",
+                        shopId: res.data.insertedId,
                         shopInfo: data
                     }
                     axiosPublic.put('/users', userInfo)
-                    .then(res=>{
-                        console.log('user info updated: ', res.data);
-                    })
+                        .then(res => {
+                            console.log('user info updated: ', res.data);
+                        })
                 }
 
             })
@@ -38,6 +39,9 @@ const CreateShop = () => {
 
     return (
         <div className="grid">
+            <Helmet>
+                <title>Inventify | Create Shop</title>
+            </Helmet>
             <h2 className="text-3xl font-bold text-center my-8">Create Shop</h2>
             <form className="mx-auto w-3/4" onSubmit={handleSubmit(onSubmit)}>
                 <label className="label">
@@ -115,7 +119,7 @@ const CreateShop = () => {
                     {...register("ownerName", { required: true })}
                 />
                 {errors.ownerName && <span className="text-red-500 mx-2">Owner Name is required</span>}
-                
+
                 <input
                     type="hidden"
                     defaultValue="3"

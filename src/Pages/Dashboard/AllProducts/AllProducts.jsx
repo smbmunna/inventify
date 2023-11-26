@@ -3,25 +3,26 @@ import { Link } from "react-router-dom";
 import useProducts from "../../../hooks/useProducts";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const AllProducts = () => {
     const [products, isLoading, refetch] = useProducts();
-    const axiosPublic= useAxiosPublic();
-    const handleDeleteProduct= id=>{
+    const axiosPublic = useAxiosPublic();
+    const handleDeleteProduct = id => {
         axiosPublic.delete(`/product/delete/${id}`)
-        .then(res=>{
-            if(res.data.deletedCount==1){
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Product Deleted!",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                  refetch();
-            }
-        })
+            .then(res => {
+                if (res.data.deletedCount == 1) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Product Deleted!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch();
+                }
+            })
     }
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>
@@ -30,6 +31,9 @@ const AllProducts = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | All Products</title>
+            </Helmet>
             <h2 className="text-3xl font-bold">List of all products:{products.length} </h2>
             <div className="overflow-x-auto">
                 <table className="table">
@@ -76,7 +80,7 @@ const AllProducts = () => {
                                     <Link to={`/dashboard/updateProduct/${product._id}`}>
                                         <button className="btn btn-ghost btn-xs">Update</button>
                                     </Link>
-                                    <button onClick={()=>handleDeleteProduct(product._id)} className="btn btn-ghost btn-xs">Delete</button>
+                                    <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-ghost btn-xs">Delete</button>
                                 </th>
                             </tr>)
                         }

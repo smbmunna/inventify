@@ -1,14 +1,20 @@
+import { Helmet } from "react-helmet-async";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     const links = <>
+        <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/dashboard/addProduct'>Add Product</NavLink></li>
         <li><NavLink to='/dashboard/salesCollection'>Sales Collection</NavLink></li>
         <li><NavLink to='/dashboard/allProducts'>All Products</NavLink></li>
         <li><NavLink to='/dashboard/checkout'>Check Out</NavLink></li>
+
     </>
     return (
         <div className="gap-10 ">
+            <Helmet>
+                <title>Inventify | Dashboard</title>
+            </Helmet>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content  text-center">

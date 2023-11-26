@@ -2,13 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 
 
 const Registration = () => {
     const { setUser, user, createUser, updateUser } = useAuth();
     const [regError, setRegError] = useState('');
-    const axiosPublic= useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const Registration = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photo = form.photo.value;
-        
+
         //Resetting Reg error 
         setRegError('');
 
@@ -39,17 +40,17 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 if (result.user.email) {
-                    const userInfo={
+                    const userInfo = {
                         name: name,
                         email: email,
                     }
                     updateUser(name, photo)
                         .then(() => {
 
-                            
+
                             //create user on our database also
                             axiosPublic.post('/users', userInfo)
-                            .then(res=>console.log(res.data))
+                                .then(res => console.log(res.data))
 
 
                             console.log('User Created and Profile updated');
@@ -68,6 +69,9 @@ const Registration = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Inventify | Registration</title>
+            </Helmet>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

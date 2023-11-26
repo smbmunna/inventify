@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const AddProduct = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
@@ -27,19 +28,19 @@ const AddProduct = () => {
     }
 
 
-    const onSubmit = async  (data) => {
-        const imageFile = {image: data.productImage[0]};
-        const res= await axiosPublic.post(image_hosting_api, imageFile,{
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.productImage[0] };
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         });
-        const imageLink= res.data.data. display_url;
+        const imageLink = res.data.data.display_url;
         axiosPublic.get(`/shops/${user.email}`)
-            .then(res => {                                                
+            .then(res => {
                 const productInfo = {
                     ...data,
-                    productImageLink:imageLink,
+                    productImageLink: imageLink,
                     shopId: res.data._id,
                     shopName: res.data.shopName,
                     userEmail: res.data.ownerEmail,
@@ -71,6 +72,9 @@ const AddProduct = () => {
 
     return (
         <div className="h-screen">
+            <Helmet>
+                <title>Dashboard | Add Product</title>
+            </Helmet>
             <h2 className="text-3xl font-bold">Add Product</h2>
             <form className="mx-auto w-3/4" onSubmit={handleSubmit(onSubmit)}>
                 <label className="label">

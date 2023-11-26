@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useCart from "../../../hooks/useCart";
+import { Helmet } from "react-helmet-async";
 
 
 const Checkout = () => {
@@ -33,7 +34,7 @@ const Checkout = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     //increase sale count of this product
-                    axiosPublic.put(`/product/update/${product._id}`, { saleCount: parseInt(product.saleCount)+parseInt(product.productQty) })
+                    axiosPublic.put(`/product/update/${product._id}`, { saleCount: parseInt(product.saleCount) + parseInt(product.productQty) })
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
                                 Swal.fire({
@@ -45,16 +46,19 @@ const Checkout = () => {
                                 });
                             }
                             //increase sale count of this product
-                            axiosPublic.put(`/product/update/${product._id}`, {productQty: parseInt(product.productQty) - parseInt(product.productQty)})
+                            axiosPublic.put(`/product/update/${product._id}`, { productQty: parseInt(product.productQty) - parseInt(product.productQty) })
                         })
 
                 }
             })
-            refetch();
+        refetch();
     }
 
     return (
         <div className="text-3xl font-bold">
+            <Helmet>
+                <title>Dashboard | Check Out</title>
+            </Helmet>
             <h2>Checkout Product {cart.length}</h2>
             <div className="h-screen">
                 <div className="overflow-x-auto">

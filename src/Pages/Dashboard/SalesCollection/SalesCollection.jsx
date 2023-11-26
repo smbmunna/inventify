@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useProducts from "../../../hooks/useProducts";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const SalesCollection = () => {
@@ -26,6 +27,9 @@ const SalesCollection = () => {
     }
     return (
         <div className="h-screen">
+            <Helmet>
+                <title>Dashboard | Sales Collection</title>
+            </Helmet>
             <h2 className="text-3xl font-bold">Sales Collection Total Products: {products.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table">
