@@ -1,13 +1,16 @@
 
+import { Link } from "react-router-dom";
 import useProducts from "../../../hooks/useProducts";
 
 
 const AllProducts = () => {
     const [products, isLoading] = useProducts();
-    console.log(products);
+    //console.log(products);
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>
     }
+
+
     return (
         <div>
             <h2 className="text-3xl font-bold">List of all products:{products.length} </h2>
@@ -30,9 +33,9 @@ const AllProducts = () => {
                     </thead>
                     <tbody>
                         {
-                            products.map((product, index)=><tr key={product._id}>
+                            products.map((product, index) => <tr key={product._id}>
                                 <th>
-                                    {index+1}
+                                    {index + 1}
                                 </th>
                                 <td>
                                     <div className="flex items-center gap-3">
@@ -44,23 +47,25 @@ const AllProducts = () => {
                                     </div>
                                 </td>
                                 <td>
-                                   {product.productName}
+                                    {product.productName}
                                 </td>
                                 <td>
-                                {product.productQty}
+                                    {product.productQty}
                                 </td>
                                 <td>
-                                {product.saleCount}
+                                    {product.saleCount}
                                 </td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">Update</button>
+                                    <Link to={`/dashboard/updateProduct/${product._id}`}>
+                                        <button className="btn btn-ghost btn-xs">Update</button>
+                                    </Link>
                                     <button className="btn btn-ghost btn-xs">Delete</button>
                                 </th>
                             </tr>)
                         }
-                        
+
                     </tbody>
-                    
+
                 </table>
             </div>
         </div>

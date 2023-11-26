@@ -13,6 +13,7 @@ import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import SalesCollection from "../Pages/Dashboard/SalesCollection/SalesCollection";
 import PrivateRoutes from "./PrivateRoutes";
 import AllProducts from "../Pages/Dashboard/AllProducts/AllProducts";
+import UpdateProduct from "../Pages/Dashboard/UpdateProduct/UpdateProduct";
 
 
 export const router = createBrowserRouter([
@@ -55,6 +56,11 @@ export const router = createBrowserRouter([
                 path: 'salesCollection',
                 element: <SalesCollection/>
             }, 
+            {
+                path: 'updateProduct/:id',
+                element:<PrivateRoutes> <UpdateProduct/></PrivateRoutes>,
+                loader: ({params})=>fetch(`http://localhost:5000/product/${params.id}`)
+            }
         ]
     }
 ]);
