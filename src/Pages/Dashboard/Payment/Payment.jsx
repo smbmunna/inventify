@@ -10,16 +10,18 @@ const stripePromise= loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 
 
 const Payment = () => {
-    const {amount}= useParams();
+    const data= useParams();
     //const finalAMount= parseInt({amount});
-    console.log(amount);
+    // const {amount, limit}= data;
+    // console.log('amoung: ',amount, 'limit: ', limit);
+    //return
     return (
         <div>
             <h2 className="font-bold text-xl my-8">Please provide the card info</h2>
 
 
             <Elements stripe={stripePromise}>
-                <CheckoutForm amount={amount}/>
+                <CheckoutForm amount={data.amount} limit={data.limit}/>
             </Elements>
         </div>
     );

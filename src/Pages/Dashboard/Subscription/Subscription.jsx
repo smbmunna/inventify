@@ -19,7 +19,7 @@ const Subscription = () => {
 
                             <p className='text-3xl font-bold'>200</p>
                         </div>
-                        <Link to={`/dashboard/payment/10`} >
+                        <Link to={`/dashboard/payment/10/200`} >
                             <button className='btn btn-primary'>Subscribe</button>
                         </Link>
                     </div>
@@ -38,7 +38,7 @@ const Subscription = () => {
 
                             <p className='text-3xl font-bold'>450</p>
                         </div>
-                        <Link to={`/dashboard/payment/20`}>
+                        <Link to={`/dashboard/payment/20/450`}>
                             <button className='btn btn-primary'>Subscribe</button>
                         </Link>
                     </div>
@@ -57,7 +57,7 @@ const Subscription = () => {
 
                             <p className='text-3xl font-bold'>1500</p>
                         </div>
-                        <Link to={`/dashboard/payment/50`}>
+                        <Link to={`/dashboard/payment/50/1500`}>
                             <button className='btn btn-primary'>Subscribe</button>
                         </Link>
                     </div>

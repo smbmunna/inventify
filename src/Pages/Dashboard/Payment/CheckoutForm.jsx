@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from '../../../hooks/useAuth';
 
-const CheckoutForm = ({amount}) => {
+const CheckoutForm = ({amount,limit}) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState([]);
     const [transactionId, setTransactionId] = useState([]);
@@ -12,6 +12,8 @@ const CheckoutForm = ({amount}) => {
     const axiosPublic = useAxiosPublic();    //todo use axios secure
     const totalPrice = amount; //todo total price hardcoded
     const { user } = useAuth();
+    // console.log(amount);
+    // console.log(limit);
 
     useEffect(() => {
         axiosPublic.post('/create-payment-intent', { price: totalPrice })
@@ -66,6 +68,11 @@ const CheckoutForm = ({amount}) => {
             if (paymentIntent.status == 'succeeded') {
                 console.log('transaction id:', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
+                //update shop collection
+                axiosPublic.patch(`/shops/updateLimit/${user.email}`, {productLimit:limit})
+                .then(res=>{
+                    console.log(res.data);
+                })
             }
         }
     }
