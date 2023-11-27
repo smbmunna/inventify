@@ -7,7 +7,7 @@ const useSales = () => {
     const {user}= useAuth();
     const axiosPublic= useAxiosPublic();
 
-    const {data: salesCollection}= useQuery({
+    const {data: salesCollection, isLoading}= useQuery({
         queryKey: ['sales'] ,
         queryFn: async ()=>{
             const res= await axiosPublic.get(`/sales/${user.email}`)
@@ -15,7 +15,7 @@ const useSales = () => {
         }
     })
 
-    return ([salesCollection])
+    return ([salesCollection, isLoading])
 };
 
 export default useSales;

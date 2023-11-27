@@ -11,6 +11,7 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/subscription'>Subscribe</NavLink></li>
         <li><NavLink to='/dashboard/payment'>Payment</NavLink></li>
         <li><NavLink to='/dashboard/salesSummary'>Sales Summary</NavLink></li>
+        <li><NavLink to='/dashboard/ManageShop'>Manage Shop</NavLink></li>
 
     </>
     return (

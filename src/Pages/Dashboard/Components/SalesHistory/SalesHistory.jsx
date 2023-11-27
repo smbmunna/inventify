@@ -2,8 +2,10 @@ import useSales from "../../../../hooks/useSales";
 
 
 const SalesHistory = () => {
-    const [salesCollection] = useSales();
-    console.log(salesCollection);
+    const [salesCollection, isLoading] = useSales();
+    if (isLoading) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
     return (
         <div>
             <h2 className="text-3xl font-bold my-8">Sales History: {salesCollection.length}</h2>
