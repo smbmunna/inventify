@@ -1,5 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../../Components/Banner/Banner";
+import OurLocation from "../../Components/OurLocation/OurLocation";
+import Packages from "../../Components/Packages/Packages";
+import Speciality from "../../Components/Speciality/Speciality";
+import Testimonials from "../../Components/Testimonials/Testimonials";
 
 
 const Home = () => {
@@ -9,6 +13,10 @@ const Home = () => {
                 <title>Inventify | Home Page</title>
             </Helmet>
             <Banner/>
+            <Speciality/>
+            <Packages/>            
+            <OurLocation/>
+            <Testimonials/>
         </div>
     );
 };

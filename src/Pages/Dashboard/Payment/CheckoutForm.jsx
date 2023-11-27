@@ -2,8 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from '../../../hooks/useAuth';
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({amount,limit}) => {
+    const navigate= useNavigate();
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState([]);
     const [transactionId, setTransactionId] = useState([]);
@@ -66,12 +69,20 @@ const CheckoutForm = ({amount,limit}) => {
         } else {
             console.log('Payment intent: ', paymentIntent);
             if (paymentIntent.status == 'succeeded') {
-                console.log('transaction id:', paymentIntent.id);
+                //console.log('transaction id:', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Payment Successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 //update shop collection
                 axiosPublic.patch(`/shops/updateLimit/${user.email}`, {productLimit:limit})
                 .then(res=>{
-                    console.log(res.data);
+                    //navigate to invoice page
+                    navigate('/dashboard/invoice')
                 })
             }
         }

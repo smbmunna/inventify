@@ -10,6 +10,7 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/checkout'>Check Out</NavLink></li>
         <li><NavLink to='/dashboard/subscription'>Subscribe</NavLink></li>
         <li><NavLink to='/dashboard/payment'>Payment</NavLink></li>
+        <li><NavLink to='/dashboard/salesSummary'>Sales Summary</NavLink></li>
 
     </>
     return (

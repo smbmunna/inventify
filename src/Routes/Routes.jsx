@@ -17,6 +17,8 @@ import UpdateProduct from "../Pages/Dashboard/UpdateProduct/UpdateProduct";
 import Checkout from "../Pages/Dashboard/Checkout/Checkout";
 import Subscription from "../Pages/Dashboard/Subscription/Subscription";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import Invoice from "../Pages/Dashboard/Payment/Invoice";
+import SalesSummary from "../Pages/Dashboard/SalesSummary/SalesSummary";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +77,14 @@ export const router = createBrowserRouter([
             {
                 path:'payment/:amount/:limit',
                 element: <PrivateRoutes><Payment/></PrivateRoutes>
+            },
+            {
+                path: 'invoice',
+                element: <PrivateRoutes><Invoice/></PrivateRoutes>
+            },
+            {
+                path: 'salesSummary',
+                element: <PrivateRoutes><SalesSummary/></PrivateRoutes>
             }
         ]
     }
