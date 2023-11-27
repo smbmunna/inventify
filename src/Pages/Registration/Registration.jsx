@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 
 
@@ -13,13 +14,18 @@ const Registration = () => {
 
     const navigate = useNavigate();
 
-    const handleRegistration = event => {
+    const handleRegistration =  async event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const photo = form.photo.value;
+        //const photo = form.photo.value;
+        const photo = form.photo.files[0];
+
+        //------------------For image hosting-------------------------
+        const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+        const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
         //Resetting Reg error 
         setRegError('');
@@ -36,6 +42,20 @@ const Registration = () => {
             setRegError('Password must contain at least one Special Character');
             return;
         }
+        // console.log(photo);
+        // return
+
+        const formData = new FormData();
+        formData.append('image', photo);
+
+         // Upload photo to imgbb
+         const response = await axiosPublic.post(image_hosting_api, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        const imageUrl = response.data.data.url;
 
         createUser(email, password)
             .then(result => {
@@ -43,17 +63,26 @@ const Registration = () => {
                     const userInfo = {
                         name: name,
                         email: email,
+                        profileImage: imageUrl
                     }
-                    updateUser(name, photo)
+                    //upload photo                    
+
+                    updateUser(name, imageUrl )
                         .then(() => {
-
-
                             //create user on our database also
                             axiosPublic.post('/users', userInfo)
-                                .then(res => console.log(res.data))
+                                .then(res => {
+                                    if(res.data.insertedId){
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "Registration Successful!",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    }
+                                })
 
-
-                            console.log('User Created and Profile updated');
                             setUser(result.user);
                             navigate('/login');
                         })
@@ -85,9 +114,10 @@ const Registration = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Photo URL</span>
+                                    <span className="label-text">Photo </span>
                                 </label>
-                                <input type="text" name='photo' placeholder="Photo URL" className="input input-bordered" required />
+                                {/* <input type="text" name='photo' placeholder="Photo URL" className="input input-bordered" required /> */}
+                                <input type="file" name='photo' placeholder="Profile Image" className="file-input file-input-bordered w-full max-w-xs" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

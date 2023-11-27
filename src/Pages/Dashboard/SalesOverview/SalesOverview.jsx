@@ -6,7 +6,7 @@ const SalesOverview = () => {
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>
     }
-    console.log(users);
+    //console.log(users);
     return (
         <div>
             <h2 className="text-3xl font-bold">Sales Overview </h2>
