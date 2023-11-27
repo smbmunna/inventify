@@ -119,7 +119,8 @@ const CreateShop = () => {
                 </label>
                 <input
                     type="email"
-                    defaultValue=""
+                    disabled
+                    defaultValue={user?.email}
                     placeholder="Owner Email"
                     className="input input-bordered w-full max-w-xs"
                     {...register("ownerEmail", { required: true })}
@@ -132,7 +133,8 @@ const CreateShop = () => {
                 </label>
                 <input
                     type="text"
-                    defaultValue=""
+                    disabled
+                    defaultValue={user?.displayName}
                     placeholder="Owner Name"
                     className="input input-bordered w-full max-w-xs"
                     {...register("ownerName", { required: true })}
