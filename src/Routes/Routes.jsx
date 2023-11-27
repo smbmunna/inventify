@@ -20,6 +20,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import Invoice from "../Pages/Dashboard/Payment/Invoice";
 import SalesSummary from "../Pages/Dashboard/SalesSummary/SalesSummary";
 import ManageShop from "../Pages/Dashboard/ManageShop/ManageShop";
+import SalesOverview from "../Pages/Dashboard/SalesOverview/SalesOverview";
 
 
 export const router = createBrowserRouter([
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
             {
                 path:'manageShop', 
                 element: <PrivateRoutes><ManageShop/></PrivateRoutes>
+            },
+            {
+                path:'salesOverview', 
+                element: <PrivateRoutes><SalesOverview/></PrivateRoutes>
             }
         ]
     }
