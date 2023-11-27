@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
-
+import Swal from "sweetalert2";
 
 
 const CreateShop = () => {
@@ -16,25 +16,44 @@ const CreateShop = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        //console.log(data);
-        axiosPublic.post('/shops', data)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.insertedId) {
-                    //send user info and shop info to server to update user collection 
-                    const userInfo = {
-                        email: user?.email,
-                        role: "manager",
-                        shopId: res.data.insertedId,
-                        shopInfo: data
-                    }
-                    axiosPublic.put('/users', userInfo)
-                        .then(res => {
-                            console.log('user info updated: ', res.data);
-                        })
-                }
+        //check if he has created a shop already
+        axiosPublic.get(`/shops/${user.email}`)
+        .then(res=>{
+            if(res.data){
+                return Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "You can create only One Shop!",
+                  });
+            }else{
+                axiosPublic.post('/shops', data)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            //send user info and shop info to server to update user collection 
+                            const userInfo = {
+                                email: user?.email,
+                                role: "manager",
+                                shopId: res.data.insertedId,
+                                shopInfo: data
+                            }
+                            axiosPublic.put('/users', userInfo)
+                                .then(res => {
+                                    console.log('user info updated: ', res.data);
+                                })
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Shop Created successfully!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+        
+                    })
 
-            })
+            }
+        })
+        
     }
 
     return (
