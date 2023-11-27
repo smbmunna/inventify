@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Subscription = () => {
@@ -15,10 +16,12 @@ const Subscription = () => {
                     <div className='pl-4 bg-gray-900 py-4 text-white'>
                         <div className='flex items-center gap-2 my-4'>
                             <p className='font-semibold text-2xl'>Product Limit</p>
-                            
+
                             <p className='text-3xl font-bold'>200</p>
                         </div>
-                        <button className='btn btn-primary'>Upgrade Membership</button>
+                        <Link to={`/dashboard/payment/10`} >
+                            <button className='btn btn-primary'>Subscribe</button>
+                        </Link>
                     </div>
                 </div>
 
@@ -32,10 +35,12 @@ const Subscription = () => {
                     <div className='pl-4 bg-gray-900 py-4 text-white'>
                         <div className='flex items-center gap-2 my-4'>
                             <p className='font-semibold text-2xl'>Product Limit</p>
-                            
+
                             <p className='text-3xl font-bold'>450</p>
                         </div>
-                        <button className='btn btn-primary'>Upgrade Membership</button>
+                        <Link to={`/dashboard/payment/20`}>
+                            <button className='btn btn-primary'>Subscribe</button>
+                        </Link>
                     </div>
                 </div>
 
@@ -49,10 +54,12 @@ const Subscription = () => {
                     <div className='pl-4 bg-gray-900 py-4 text-white'>
                         <div className='flex items-center gap-2 my-4'>
                             <p className='font-semibold text-2xl'>Product Limit</p>
-                            
+
                             <p className='text-3xl font-bold'>1500</p>
                         </div>
-                        <button className='btn btn-primary'>Upgrade Membership</button>
+                        <Link to={`/dashboard/payment/50`}>
+                            <button className='btn btn-primary'>Subscribe</button>
+                        </Link>
                     </div>
                 </div>
             </div>

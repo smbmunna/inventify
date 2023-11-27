@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from '../../../hooks/useAuth';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({amount}) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState([]);
     const [transactionId, setTransactionId] = useState([]);
     const stripe = useStripe();
     const elements = useElements();
     const axiosPublic = useAxiosPublic();    //todo use axios secure
-    const totalPrice = 15; //todo total price hardcoded
+    const totalPrice = amount; //todo total price hardcoded
     const { user } = useAuth();
 
     useEffect(() => {
