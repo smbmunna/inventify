@@ -13,6 +13,7 @@ const Login = () => {
 
     //Redirect user to desired path
     const location = useLocation();
+    console.log(location);
     const navigate = useNavigate();
 
     const handleLogin = event => {

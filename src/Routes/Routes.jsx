@@ -21,6 +21,7 @@ import Invoice from "../Pages/Dashboard/Payment/Invoice";
 import SalesSummary from "../Pages/Dashboard/SalesSummary/SalesSummary";
 import ManageShop from "../Pages/Dashboard/ManageShop/ManageShop";
 import SalesOverview from "../Pages/Dashboard/SalesOverview/SalesOverview";
+import ProductMangement from "../Pages/Dashboard/ProductManagement/ProductMangement";
 
 
 export const router = createBrowserRouter([
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
         element: <Dashboard/>,
         children: [
             {
+                path: 'productManagement',
+                element: <PrivateRoutes><ProductMangement/></PrivateRoutes>
+            },
+            {
                 path:'addproduct',
                 element: <PrivateRoutes><AddProduct/></PrivateRoutes>
             },
@@ -61,7 +66,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'salesCollection',
-                element: <SalesCollection/>
+                element: <PrivateRoutes><SalesCollection/></PrivateRoutes>
             }, 
             {
                 path: 'updateProduct/:id',

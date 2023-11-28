@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 const CreateShop = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
+    //------------------For image upload-------------------------
+    const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
     //console.log(user);
     const {
         register,
@@ -15,31 +18,51 @@ const CreateShop = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.shopLogo[0] };
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        const imageLink = res.data.data.display_url;
         //check if he has created a shop already
         axiosPublic.get(`/shops/${user.email}`)
-        .then(res=>{
-            if(res.data){
-                return Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "You can create only One Shop!",
-                  });
-            }else{
-                axiosPublic.post('/shops', data)
-                    .then(res => {
-                        if (res.data.insertedId) {
-                            //send user info and shop info to server to update user collection 
-                            const userInfo = {
-                                email: user?.email,
-                                role: "manager",
-                                shopId: res.data.insertedId,
-                                shopInfo: data
-                            }
-                            axiosPublic.put('/users', userInfo)
-                                .then(res => {
-                                    console.log('user info updated: ', res.data);
-                                })
+            .then(res => {
+                if (res.data) {
+                    return Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "You can create only One Shop!",
+                    });
+                } else {
+                    const shopData = {
+                        ...data,
+                        shopLogoUrl: imageLink,
+                    }
+                    axiosPublic.post('/shops', shopData)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                //send user info and shop info to server to update user collection 
+                                const userInfo = {
+                                    email: user?.email,
+                                    role: "manager",
+                                    shopId: res.data.insertedId,
+                                    shopInfo: data
+                                }
+                                axiosPublic.put('/users', userInfo)
+                                    .then(res => {
+                                        console.log('user info updated: ', res.data);
+                                    })
+                                //update shop owner
+                                // const ownerInfo={
+                                //     ownerName: user.displayName,
+                                //     ownerEmail: user.email
+                                // }
+                                // axiosPublic.put(`/shop/udate/owner/${res.data.insertedId}`,ownerInfo)
+                                // .then(res=>{
+                                //     console.log(res.data)
+                                // });
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
@@ -48,12 +71,12 @@ const CreateShop = () => {
                                     timer: 1500
                                 });
                             }
-        
-                    })
 
-            }
-        })
-        
+                        })
+
+                }
+            })
+
     }
 
     return (
@@ -80,10 +103,10 @@ const CreateShop = () => {
                     <span className="label-text">Shop Logo</span>
                 </label>
                 <input
-                    type="text"
+                    type="file"
                     defaultValue=""
-                    placeholder="Shop Logo"
-                    className="input input-bordered w-full max-w-xs"
+                    placeholder="Shop logo"
+                    className="file-input file-input-bordered w-full max-w-xs"
                     {...register("shopLogo", { required: true })}
                 />
                 {errors.shopLogo && <span className="text-red-500 mx-2">Shop Logo is required</span>}
@@ -114,12 +137,14 @@ const CreateShop = () => {
                 {errors.shopLocation && <span className="text-red-500 mx-2">Shop Location is required</span>}
 
 
+
+
                 <label className="label">
                     <span className="label-text">Onwer Email</span>
                 </label>
                 <input
                     type="email"
-                    disabled
+                    //disabled
                     defaultValue={user?.email}
                     placeholder="Owner Email"
                     className="input input-bordered w-full max-w-xs"
@@ -133,14 +158,13 @@ const CreateShop = () => {
                 </label>
                 <input
                     type="text"
-                    disabled
+                    //disabled
                     defaultValue={user?.displayName}
                     placeholder="Owner Name"
                     className="input input-bordered w-full max-w-xs"
                     {...register("ownerName", { required: true })}
                 />
                 {errors.ownerName && <span className="text-red-500 mx-2">Owner Name is required</span>}
-
                 <input
                     type="hidden"
                     defaultValue="3"
