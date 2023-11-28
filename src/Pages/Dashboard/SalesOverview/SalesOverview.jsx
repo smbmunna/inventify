@@ -1,4 +1,5 @@
 import useUsers from "../../../hooks/useUsers";
+import SysAdminSalesStat from "../Components/SysAdminSalesStat/SysAdminSalesStat";
 
 
 const SalesOverview = () => {
@@ -11,6 +12,7 @@ const SalesOverview = () => {
         <div>
             <h2 className="text-3xl font-bold">Sales Overview </h2>
 
+            <SysAdminSalesStat />
 
             <h2 className="text-3xl font-bold">Users Information :{users.length} </h2>
             <div className="overflow-x-auto">

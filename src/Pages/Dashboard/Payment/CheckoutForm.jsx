@@ -5,18 +5,20 @@ import useAuth from '../../../hooks/useAuth';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({amount,limit}) => {
-    const navigate= useNavigate();
+const CheckoutForm = ({ amount, limit }) => {
+    const navigate = useNavigate();
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState([]);
     const [transactionId, setTransactionId] = useState([]);
     const stripe = useStripe();
     const elements = useElements();
     const axiosPublic = useAxiosPublic();    //todo use axios secure
-    const totalPrice = amount; //todo total price hardcoded
+    const totalPrice = amount;
     const { user } = useAuth();
     // console.log(amount);
     // console.log(limit);
+
+
 
     useEffect(() => {
         axiosPublic.post('/create-payment-intent', { price: totalPrice })
@@ -28,6 +30,8 @@ const CheckoutForm = ({amount,limit}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+
 
         //if no sufficient info then return
         if (!stripe || !elements) {
@@ -77,13 +81,25 @@ const CheckoutForm = ({amount,limit}) => {
                     title: "Payment Successful!",
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
+
+                //get admin income
+                axiosPublic.get('/adminInfo')
+                    .then(res => {
+                        const income = res.data.income;
+                        //update admin income
+                        axiosPublic.put(`/users/admin/income/${parseFloat(totalPrice)+parseFloat(income)}`)
+
+                    })
                 //update shop collection
-                axiosPublic.patch(`/shops/updateLimit/${user.email}`, {productLimit:limit})
-                .then(res=>{
-                    //navigate to invoice page
-                    navigate('/dashboard/invoice')
-                })
+                axiosPublic.patch(`/shops/updateLimit/${user.email}`, { productLimit: limit })
+
+
+                    .then(res => {
+                        console.log('admin income updated')
+                        //navigate to invoice page
+                        navigate('/dashboard/invoice')
+                    })
             }
         }
     }
