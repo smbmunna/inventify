@@ -12,8 +12,7 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
 
     //Redirect user to desired path
-    const location = useLocation();
-    console.log(location);
+    const location = useLocation();    
     const navigate = useNavigate();
 
     const handleLogin = event => {

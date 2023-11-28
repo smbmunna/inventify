@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 
 const CreateShop = () => {
@@ -16,7 +17,22 @@ const CreateShop = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+        reset,
+    } = useForm({
+        defaultValues: {
+            ownerEmail: user?.email,
+            ownerName: user?.displayName,
+            
+         }
+    });
+
+    useEffect(()=>{
+        let defaults ={
+            ownerEmail: user?.email,
+            ownerName: user?.displayName
+         }
+         reset(defaults)
+    },[user, reset])
 
     const onSubmit = async (data) => {
         const imageFile = { image: data.shopLogo[0] };
@@ -144,11 +160,12 @@ const CreateShop = () => {
                 </label>
                 <input
                     type="email"
-                    //disabled
+                    disabled
                     defaultValue={user?.email}
                     placeholder="Owner Email"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs"                    
                     {...register("ownerEmail", { required: true })}
+                    
                 />
                 {errors.ownerEmail && <span className="text-red-500 mx-2">Owner Email is required</span>}
 
@@ -158,7 +175,7 @@ const CreateShop = () => {
                 </label>
                 <input
                     type="text"
-                    //disabled
+                    disabled
                     defaultValue={user?.displayName}
                     placeholder="Owner Name"
                     className="input input-bordered w-full max-w-xs"

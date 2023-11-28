@@ -4,6 +4,7 @@ import OurLocation from "../../Components/OurLocation/OurLocation";
 import Packages from "../../Components/Packages/Packages";
 import Speciality from "../../Components/Speciality/Speciality";
 import Testimonials from "../../Components/Testimonials/Testimonials";
+import WhyUs from "../../Components/Packages/WhyUs/WhyUs";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
                 <title>Inventify | Home Page</title>
             </Helmet>
             <Banner/>
+            <WhyUs/>
             <Speciality/>
             <Packages/>            
             <OurLocation/>
