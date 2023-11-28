@@ -1,10 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import useShopUser from "../../../hooks/useShopUser";
+import useProducts from "../../../hooks/useProducts";
 const AddProduct = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
@@ -27,43 +29,64 @@ const AddProduct = () => {
         return formattedDate;
     }
 
+    //reading no of products of this user
+    const [products, isLoading] = useProducts();
+    const shopProductCount = products.length;
+   // console.log('present Product:', shopProductCount);
+
+    if (isLoading) {
+        return <span className="loading loading-bars loading-lg"></span>
+    }
+
 
     const onSubmit = async (data) => {
-        const imageFile = { image: data.productImage[0] };
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        });
-        const imageLink = res.data.data.display_url;
-        axiosPublic.get(`/shops/${user.email}`)
-            .then(res => {
-                const productInfo = {
-                    ...data,
-                    productImageLink: imageLink,
-                    shopId: res.data._id,
-                    shopName: res.data.shopName,
-                    userEmail: res.data.ownerEmail,
-                    sellingPrice: parseFloat(data.costPrice) + (7.5 * parseFloat(data.costPrice) / 100) + (parseFloat(data.profitMargin) * parseFloat(data.costPrice) / 100),
-                    productAddDate: getCurrentDate(),
-                    saleCount: 0,
-                }
-                axiosPublic.post('/products', productInfo)
-                    .then(res => {
-                        if (res.data.insertedId) {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Product added successfully!",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            navigate('/dashboard/allProducts');
-                        }
-                    })
-
+        const shopInfo = await axiosPublic.get(`/shops/${user.email}`);
+        const shopProdLimit = shopInfo.data?.productLimit;
+        if (shopProdLimit <= shopProductCount) {
+             Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You have reached the maximum product limit!!",
             });
+            navigate('/dashboard/subscription');
+            
+        } else {
+            const imageFile = { image: data.productImage[0] };
+            const res = await axiosPublic.post(image_hosting_api, imageFile, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            });
+            const imageLink = res.data.data.display_url;
+            axiosPublic.get(`/shops/${user.email}`)
+                .then(res => {
+                    const productInfo = {
+                        ...data,
+                        productImageLink: imageLink,
+                        shopId: res.data._id,
+                        shopName: res.data.shopName,
+                        userEmail: res.data.ownerEmail,
+                        sellingPrice: parseFloat(data.costPrice) + (7.5 * parseFloat(data.costPrice) / 100) + (parseFloat(data.profitMargin) * parseFloat(data.costPrice) / 100),
+                        productAddDate: getCurrentDate(),
+                        saleCount: 0,
+                    }
 
+                    axiosPublic.post('/products', productInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Product added successfully!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                navigate('/dashboard/allProducts');
+                            }
+                        })
+
+                });
+        }
 
     }
 
