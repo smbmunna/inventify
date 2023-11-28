@@ -2,10 +2,20 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useCart from "../../../hooks/useCart";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-
+import { jsPDF } from "jspdf";
 
 const Checkout = () => {
+    const doc = new jsPDF();
+    const pdfPrint = (product) => {
+        doc.setFontSize(22);
+        doc.text("System Generated Invoice", 10, 10);
+        doc.setFontSize(22);
+        doc.text(`Name: ${product.productName}`,10,30);
+        doc.text(`Bill Amount: ${product.sellingPrice}`,10,50);
+        doc.text(`Sold By:${product.userEmail}`,10,60);
+        doc.text(`Add Date:${product.productAddDate}`,10,80);
+        doc.save("Invoice.pdf");
+    }
     const [cart, isLoading, refetch] = useCart();
     const axiosPublic = useAxiosPublic();
     //console.log(cart);
@@ -26,14 +36,19 @@ const Checkout = () => {
     }
 
     const handleGetPaid = async (product) => {
+        // console.log(product);
+        // return;
         const productInfo = {
             ...product,
             addDate: getCurrentDate(),
             addTime: getCurrenttime()
         }
+        pdfPrint(product);
         await axiosPublic.post(`/sales`, productInfo)
             .then(res => {
                 if (res.data.insertedId) {
+
+                    doc.save("a4.pdf");
                     //increase sale count of this product
                     axiosPublic.put(`/product/update/${product._id}`, { saleCount: parseInt(product.saleCount) + parseInt(product.productQty) })
                         .then(res => {
@@ -48,14 +63,16 @@ const Checkout = () => {
                             }
                             //increase sale count of this product
                             axiosPublic.put(`/product/update/${product._id}`, { productQty: parseInt(product.productQty) - parseInt(product.productQty) })
+
                             //delete from cart
                             axiosPublic.delete(`/carts/${product._id}`)
-                            .then(res=>{
-                                console.log(res.data);
-                                if(res.data.deletedCount>0){
-                                    refetch();
-                                }
-                            })
+                                .then(res => {
+                                    console.log(res.data);
+                                    if (res.data.deletedCount > 0) {
+                                        refetch();
+
+                                    }
+                                })
                         })
 
                 }
