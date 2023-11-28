@@ -10,14 +10,26 @@ const UpdateProduct = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
     const navigate= useNavigate();
+    //------------------For image hosting-------------------------
+    const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
     
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.productImage[0] };
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        const imageLink = res.data.data.display_url;
         axiosPublic.put(`/product/update/${product._id}`, data)
+        //update image
+        axiosPublic.put(`/product/update/${product._id}`, {productImageLink: imageLink})
         .then(res=>{
            if(res.data.modifiedCount>0){
             Swal.fire({
@@ -52,10 +64,10 @@ const UpdateProduct = () => {
                     <span className="label-text">Product Image</span>
                 </label>
                 <input
-                    type="text"
-                    defaultValue={product.productImage}
+                    type="file"
+                    defaultValue=""
                     placeholder="Product Image"
-                    className="input input-bordered w-full max-w-xs"
+                    className="file-input file-input-bordered w-full max-w-xs"
                     {...register("productImage", { required: true })}
                 />
                 {errors.productImage && <span className="text-red-500 mx-2">Product Image is required</span>}

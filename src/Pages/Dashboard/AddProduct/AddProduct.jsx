@@ -44,7 +44,7 @@ const AddProduct = () => {
                     shopId: res.data._id,
                     shopName: res.data.shopName,
                     userEmail: res.data.ownerEmail,
-                    sellingPrice: data.costPrice + (7.5 * data.costPrice / 100) + (data.profitMargin * data.costPrice / 100),
+                    sellingPrice: parseFloat(data.costPrice) + (7.5 * parseFloat(data.costPrice) / 100) + (parseFloat(data.profitMargin) * parseFloat(data.costPrice) / 100),
                     productAddDate: getCurrentDate(),
                     saleCount: 0,
                 }
