@@ -10,19 +10,32 @@ const AllProducts = () => {
     const [products, isLoading, refetch] = useProducts();
     const axiosPublic = useAxiosPublic();
     const handleDeleteProduct = id => {
-        axiosPublic.delete(`/product/delete/${id}`)
-            .then(res => {
-                if (res.data.deletedCount == 1) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Product Deleted!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    refetch();
-                }
-            })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/product/delete/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount == 1) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Product Deleted!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            refetch();
+                        }
+                    })
+            }
+        });
+
     }
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>

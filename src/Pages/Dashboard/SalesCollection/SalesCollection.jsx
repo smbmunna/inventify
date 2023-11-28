@@ -10,7 +10,7 @@ const SalesCollection = () => {
     const axiosPublic = useAxiosPublic();
     // add to cart
     const handleAddToCart = product => {
-        //console.log(product);
+        //console.log(product);        
         axiosPublic.post('/carts', product)
             .then(res => {
                 if (res.data.insertedId) {
@@ -60,7 +60,7 @@ const SalesCollection = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src="" alt="Avatar Tailwind CSS Component" />
+                                                <img src={product.productImageLink} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                     </div>

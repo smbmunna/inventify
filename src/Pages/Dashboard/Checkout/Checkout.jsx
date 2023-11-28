@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useCart from "../../../hooks/useCart";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 
 const Checkout = () => {
@@ -47,6 +48,14 @@ const Checkout = () => {
                             }
                             //increase sale count of this product
                             axiosPublic.put(`/product/update/${product._id}`, { productQty: parseInt(product.productQty) - parseInt(product.productQty) })
+                            //delete from cart
+                            axiosPublic.delete(`/carts/${product._id}`)
+                            .then(res=>{
+                                console.log(res.data);
+                                if(res.data.deletedCount>0){
+                                    refetch();
+                                }
+                            })
                         })
 
                 }
@@ -90,7 +99,7 @@ const Checkout = () => {
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src="" alt="Avatar Tailwind CSS Component" />
+                                                    <img src={product.productImageLink} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                         </div>
