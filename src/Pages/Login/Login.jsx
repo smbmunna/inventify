@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -25,6 +26,13 @@ const Login = () => {
         loginUser(email, password)
             .then(res => {
                 console.log('Login success: ', res.user);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate(location.state ? location.state : '/')
             })
             .catch(err => {

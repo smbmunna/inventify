@@ -84,7 +84,7 @@ const Registration = () => {
                                 })
 
                             setUser(result.user);
-                            navigate('/login');
+                            navigate('/createShop');
                         })
                         .catch(error => {
                             console.log(error.message);
