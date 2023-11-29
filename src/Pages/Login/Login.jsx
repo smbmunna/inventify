@@ -77,7 +77,7 @@ const Login = () => {
                                     <FcGoogle className="text-3xl" />  Google Login
                                 </button>
                             </div>
-                            <p className='text-red-50 text-center font-bold'>
+                            <p className='text-red-500 text-center font-bold'>
                                 {loginError}
                             </p>
                         </form>

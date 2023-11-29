@@ -1,7 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
+    const [isAdmin]= useAdmin();
+    console.log(isAdmin);
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/dashboard/productManagement'>Product Management</NavLink></li>

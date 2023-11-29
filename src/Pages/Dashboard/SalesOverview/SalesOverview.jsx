@@ -1,13 +1,29 @@
+import { useState } from "react";
 import useUsers from "../../../hooks/useUsers";
 import SysAdminSalesStat from "../Components/SysAdminSalesStat/SysAdminSalesStat";
 
 
 const SalesOverview = () => {
+    //for pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 2; // You can adjust this based on your preference
+
+
     const [users, isLoading] = useUsers();
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>
     }
-    //console.log(users);
+    // Calculate the index range for the current page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
+
+    // Function to change the current page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
+
+    console.log(users);
     return (
         <div>
             <h2 className="text-3xl font-bold">Sales Overview </h2>
@@ -28,7 +44,7 @@ const SalesOverview = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id}>
+                            currentItems.map((user, index) => <tr key={user._id}>
                                 <th>
                                     {index + 1}
                                 </th>
@@ -53,6 +69,15 @@ const SalesOverview = () => {
                     </tbody>
 
                 </table>
+            </div>
+
+            {/* Pagination controls */}
+            <div>
+                {Array.from({ length: Math.ceil(users.length / itemsPerPage) }).map((_, index) => (
+                    <button className="btn btn-warning btn-xs" key={index} onClick={() => paginate(index + 1)}>
+                        {index + 1}
+                    </button>
+                ))}
             </div>
 
         </div>
