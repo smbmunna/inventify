@@ -49,9 +49,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <img className="w-16"
-                        src="https://i.ibb.co/hVL2zBm/Healthy-food-logo-template-Organic-food-vector-design-Fork-spoon-and-leaves-logotype.png" alt="" />
+                        src="https://i.ibb.co/SmqxgJq/Black-White-Modern-Online-Shop-Logo.png" alt="" />
 
-                    <Link to='/' className="text-xl font-bold">Fresh Bites</Link>
+                    <Link to='/' className="text-xl font-bold">Inventify</Link>
 
                 </div>
                 <div className="navbar-center hidden lg:flex">
