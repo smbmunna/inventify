@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useShopUser from "../../hooks/useShopUser";
 
 
 const Navbar = () => {
-    const {user, logoutUser}= useAuth();
+    const { user, logoutUser } = useAuth();
+    const [usersShop, isLoading] = useShopUser();
+    if (isLoading) {
+        return <span className="loading loading-bars loading-lg"></span>
+    } 
+    console.log(usersShop);
+
     const handleLogout = () => {
         logoutUser()
             .then(() => console.log('user logged out'))
@@ -11,10 +18,21 @@ const Navbar = () => {
     }
     const links =
         <>
-            <Link className="btn mx-2" to='/login'>Login</Link>
-            <Link className="btn mx-2" to='/registration'>Registration</Link>
-            <Link className="btn mx-2" to='/createShop'>Create Shop</Link>
-            <Link className="btn mx-2" to='/dashboard'>Dashboard</Link>
+            <Link className="btn mx-2" to='/'>Home</Link>
+            {
+                !user?.email && <>
+                    <Link className="btn mx-2" to='/login'>Login</Link>
+                    <Link className="btn mx-2" to='/registration'>Registration</Link>
+                </>
+            }
+            
+            <Link className="btn mx-2" to='/'>Watch Demo</Link>
+            {
+                usersShop ?
+                    <Link className="btn mx-2" to='/dashboard'>Dashboard</Link>
+                :
+                <Link className="btn mx-2" to='/createShop'>Create Shop</Link>
+            }
 
         </>
     return (

@@ -22,6 +22,7 @@ import SalesSummary from "../Pages/Dashboard/SalesSummary/SalesSummary";
 import ManageShop from "../Pages/Dashboard/ManageShop/ManageShop";
 import SalesOverview from "../Pages/Dashboard/SalesOverview/SalesOverview";
 import ProductMangement from "../Pages/Dashboard/ProductManagement/ProductMangement";
+import AdminRoutes from "./AdminRoutes";
 
 
 export const router = createBrowserRouter([
@@ -99,7 +100,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'salesOverview', 
-                element: <PrivateRoutes><SalesOverview/></PrivateRoutes>
+                element: <AdminRoutes><SalesOverview/></AdminRoutes>
             }
         ]
     }
