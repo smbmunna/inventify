@@ -3,14 +3,24 @@ import useProducts from "../../../hooks/useProducts";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import Search from "./Search";
 
 
 const SalesCollection = () => {
     const [products] = useProducts();
     const axiosPublic = useAxiosPublic();
+
+    //for search 
+    const [searchResults, setSearchResults] = useState(products);
+    const handleSearch = results => {
+        setSearchResults(results);
+    }
+
+   // console.log(products);
     // add to cart
     const handleAddToCart = product => {
-        //console.log(product);        
+
         axiosPublic.post('/carts', product)
             .then(res => {
                 if (res.data.insertedId) {
@@ -31,6 +41,8 @@ const SalesCollection = () => {
                 <title>Dashboard | Sales Collection</title>
             </Helmet>
             <h2 className="text-3xl font-bold">Sales Collection Total Products: {products.length}</h2>
+            <Search data={products} onSearch={handleSearch} />
+            
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -48,7 +60,7 @@ const SalesCollection = () => {
                     </thead>
                     <tbody>
                         {
-                            products.map((product, index) => <tr key={product._id}>
+                            searchResults.map((product, index) => <tr key={product._id}>
                                 <th>
                                     {index + 1}
                                 </th>
