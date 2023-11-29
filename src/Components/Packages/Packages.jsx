@@ -10,77 +10,59 @@ const Packages = () => {
                 <h1 className="text-3xl font-bold mb-4">Be a member!</h1>
                 <p className="">Thanks for having faith on us. You can upgrade your membership by choosing one from the followings</p>
             </div>
-            <div className="lg:grid grid-cols-3 gap-8">
+            <div className="lg:grid lg:grid-cols-3 grid-cols-1 gap-8 lg:w-full w-3/4 mx-auto">
                 {/* card 01 */}
-                <div className='lg:w-3/4' data-aos="zoom-in-up" data-aos-duration="1000">
-                    <div className="py-10 bg-violet-600 text-white pl-4">
-                        <h2 className="text-4xl font-semibold">Starter</h2>
-                        <hr className='w-1/2' />
-                        <h2 className="text-5xl mt-10">49 <span className="text-2xl">$</span></h2>
-                        <p className="text-xl">/Person</p>
+                <div className='lg:w-3/4 my-8' data-aos="zoom-in-up" data-aos-duration="1000">
+                    <div className="py-10 bg-[#666666] text-white pl-4">
+                        <h2 className="text-4xl font-semibold  text-center">Standard</h2>
+                        <hr className='w-full my-4' />
+                        <h2 className="text-5xl mt-10 text-center font-bold">10 <span className="text-2xl">$</span></h2>
                     </div>
-                    <div className='pl-4 bg-gray-900 py-4'>
+                    <div className='pl-4 bg-[#AEFFF1] py-4'>
                         <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>1 Comfortable Seats</p>
+                        <div className='flex mx-auto items-center'>
+                                <p className='font-semibold'>Product Limit: <span className='font-bold text-2xl'>200</span></p>
+                            </div>
                         </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Free Lunch and Coffee</p>
+                        <div className='grid'>
+                            <button className='btn bg-[#666666] rounded-sm text-white mx-auto'>Upgrade Membership</button>
                         </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Certificate</p>
-                        </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Easy Access</p>
-                        </div>
-                        <button className='btn btn-primary'>Upgrade Membership</button>
                     </div>
                 </div>
                 {/* card 01 */}
-                <div className='lg:w-3/4' data-aos="zoom-in-down" data-aos-duration="1000">
-                    <div className="py-10 bg-violet-600 text-white pl-4 ">
-                        <h2 className="text-4xl font-semibold">Standard</h2>
-                        <hr className='w-1/2' />
-                        <h2 className="text-5xl mt-10">80 <span className="text-2xl">$</span></h2>
-                        <p className="text-xl">/Person</p>
+                <div className='lg:w-3/4 my-8' data-aos="zoom-in-down" data-aos-duration="1000">
+                    <div className="py-10 bg-[#666666] text-white pl-4">
+                        <h2 className="text-4xl font-semibold text-center">Gold</h2>
+                        <hr className='w-full my-4' />
+                        <h2 className="text-5xl mt-10 text-center font-bold">20 <span className="text-2xl">$</span></h2>
                     </div>
-                    <div className='pl-4 bg-gray-900 py-4'>
+                    <div className='pl-4 bg-[#AEFFF1] py-4'>
                         <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>1 Comfortable Seats</p>
+                            <div className='flex mx-auto items-center'>
+                                <p className='font-semibold'>Product Limit: <span className='font-bold text-2xl'>450</span></p>
+                            </div>
                         </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Free Lunch and Coffee</p>
+                        <div className='grid'>
+                            <button className='btn bg-[#666666] rounded-sm text-white mx-auto'>Upgrade Membership</button>
                         </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Certificate</p>
-                        </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Easy Access</p>
-                        </div>
-                        <button className='btn btn-primary'>Upgrade Membership</button>
                     </div>
                 </div>
                 {/* card 01 */}
-                <div className='lg:w-3/4' data-aos="zoom-in-up" data-aos-duration="1000">
-                    <div className="py-10 bg-violet-600 text-white pl-4 ">
-                        <h2 className="text-4xl font-semibold">Platinum</h2>
-                        <hr className='w-1/2' />
-                        <h2 className="text-5xl mt-10">150 <span className="text-2xl">$</span></h2>
-                        <p className="text-xl">/Person</p>
+                <div className='lg:w-3/4 my-8' data-aos="zoom-in-up" data-aos-duration="1000">
+                    <div className="py-10 bg-[#666666] text-white pl-4">
+                        <h2 className="text-4xl font-semibold text-center">Platinum</h2>
+                        <hr className='w-full my-4' />
+                        <h2 className="text-5xl mt-10  text-center font-bold">50 <span className="text-2xl">$</span></h2>
                     </div>
-                    <div className='pl-4 bg-gray-900 py-4'>
+                    <div className='pl-4 bg-[#AEFFF1] py-4'>
                         <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>1 Comfortable Seats</p>
+                        <div className='flex mx-auto items-center'>
+                                <p className='font-semibold'>Product Limit: <span className='font-bold text-2xl'>1500</span></p>
+                            </div>
                         </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Free Lunch and Coffee</p>
+                        <div className='grid'>
+                            <button className='btn bg-[#666666] rounded-sm text-white mx-auto'>Upgrade Membership</button>
                         </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Certificate</p>
-                        </div>
-                        <div className='flex items-center gap-2 my-4'>
-                            <AiOutlineCheckCircle /><p>Easy Access</p>
-                        </div>
-                        <button className='btn btn-primary'>Upgrade Membership</button>
                     </div>
                 </div>
 
