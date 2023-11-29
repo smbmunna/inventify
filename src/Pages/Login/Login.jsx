@@ -5,14 +5,16 @@ import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 
 const Login = () => {
-    const { loginUser } = useAuth();
+    const { loginUser, googleLogin } = useAuth();
     const [loginError, setLoginError] = useState('');
+    const axiosPublic= useAxiosPublic();
 
     //Redirect user to desired path
-    const location = useLocation();    
+    const location = useLocation();
     const navigate = useNavigate();
 
     const handleLogin = event => {
@@ -37,6 +39,30 @@ const Login = () => {
             })
             .catch(err => {
                 setLoginError(err.message);
+            })
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => {
+                console.log('google login success: ', res.user.displayName);
+                const userInfo={
+                    name:res.user?.displayName, 
+                    email:res.user?.email, 
+                }
+                axiosPublic.post('/users', userInfo)
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(location.state ? location.state : '/')
+            })
+            .catch(error => {
+                console.log(error.message);
+                setLoginError(error.message)
             })
     }
 
@@ -72,7 +98,7 @@ const Login = () => {
                             </div>
                             <div>
                                 <button
-
+                                    onClick={handleGoogleLogin}
                                     className="btn text-white rounded-none bg-[#78bc16] mt-4 w-full ">
                                     <FcGoogle className="text-3xl" />  Google Login
                                 </button>
@@ -81,6 +107,8 @@ const Login = () => {
                                 {loginError}
                             </p>
                         </form>
+
+
                     </div>
                 </div>
             </div>

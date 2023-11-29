@@ -1,29 +1,31 @@
 import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext({});
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 const auth = getAuth(app);
 
+const googleProvider = new GoogleAuthProvider();
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const [loading, setLoading]= useState(true);
+    const [loading, setLoading] = useState(true);
 
     //observe user 
-    useEffect(()=>{
-        const unsubscirbe =  onAuthStateChanged(auth, currentUser=>{          
-              
+    useEffect(() => {
+        const unsubscirbe = onAuthStateChanged(auth, currentUser => {
+
             setUser(currentUser);
-            if(currentUser){                          
+            if (currentUser) {
                 console.log(currentUser);
                 setLoading(false);
-           }else{
+            } else {
                 console.log('No user logged in')
             }
         })
-        return ()=>unsubscirbe();
-        
-    },[])
+        return () => unsubscirbe();
+
+    }, [])
 
     //create new user with email and password
     const createUser = (email, password) => {
@@ -38,16 +40,21 @@ const AuthProvider = ({ children }) => {
             photoURL: photo
         })
     }
-    
+
+    //google login
+    const googleLogin = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
 
     //Login user
-    const loginUser= (email, password)=>{
+    const loginUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     //logout user
-    const logoutUser=()=>{
+    const logoutUser = () => {
         return signOut(auth);
     }
 
@@ -57,7 +64,8 @@ const AuthProvider = ({ children }) => {
         updateUser,
         setUser,
         loginUser,
-        logoutUser
+        logoutUser,
+        googleLogin
     }
 
     return (
