@@ -8,7 +8,7 @@ const useSales = () => {
     const axiosPublic= useAxiosPublic();
 
     const {data: salesCollection, isLoading}= useQuery({
-        queryKey: ['sales'] ,
+        queryKey: ['sales', user?.email] ,
         queryFn: async ()=>{
             const res= await axiosPublic.get(`/sales/${user.email}`)
             return res.data;  

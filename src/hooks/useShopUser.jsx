@@ -11,7 +11,7 @@ const useShopUser = () => {
     // }
     
     const { data: usersShop, isLoading, isPending } = useQuery({
-        queryKey: ['shops'],
+        queryKey: ['shops', user?.email],
         queryFn: async () => {
             const res = await axiosPublic.get(`/shops/${user.email}`)
             return res.data;
