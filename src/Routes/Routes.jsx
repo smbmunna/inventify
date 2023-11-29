@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element: <Dashboard/>,
+        element: <PrivateRoutes><Dashboard/></PrivateRoutes>,
         children: [
             {
                 path: 'productManagement',
@@ -96,7 +96,7 @@ export const router = createBrowserRouter([
             }, 
             {
                 path:'manageShop', 
-                element: <PrivateRoutes><ManageShop/></PrivateRoutes>
+                element: <AdminRoutes><ManageShop/></AdminRoutes>
             },
             {
                 path:'salesOverview', 

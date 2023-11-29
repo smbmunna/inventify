@@ -63,6 +63,7 @@ const Checkout = () => {
                             }
                             //increase sale count of this product
                             axiosPublic.put(`/product/update/${product._id}`, { productQty: parseInt(product.productQty) - parseInt(product.productQty) })
+                            axiosPublic.put(`/product/update/${product._id}`, { status:'sold'})
 
                             //delete from cart
                             axiosPublic.delete(`/carts/${product._id}`)

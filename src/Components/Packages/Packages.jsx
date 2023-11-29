@@ -1,14 +1,10 @@
-import { Helmet } from 'react-helmet-async';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
-
-
 
 const Packages = () => {
     return (
         <div className=" max-w-screen-xl mx-auto my-8">
-            <div className="text-center mb-20">
-                <h1 className="text-3xl font-bold mb-4">Be a member!</h1>
-                <p className="">Thanks for having faith on us. You can upgrade your membership by choosing one from the followings</p>
+            <div className="text-center mb-2">
+                <h1 className="text-3xl font-bold">Be a member!</h1>
+                <p className="text-lg">Get the most out of our Inventory Management System. </p>
             </div>
             <div className="lg:grid lg:grid-cols-3 grid-cols-1 gap-8 lg:w-full w-3/4 mx-auto">
                 {/* card 01 */}

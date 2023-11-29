@@ -8,8 +8,10 @@ import Search from "./Search";
 
 
 const SalesCollection = () => {
-    const [products] = useProducts();
+    const [products,isLoading, refetch] = useProducts();
     const axiosPublic = useAxiosPublic();
+
+    
 
     //for search 
     const [searchResults, setSearchResults] = useState(products);
@@ -17,23 +19,35 @@ const SalesCollection = () => {
         setSearchResults(results);
     }
 
-   // console.log(products);
+    // console.log(products);
     // add to cart
     const handleAddToCart = product => {
+        const productData = {
+            ...product,
+            status: 'checkout'
+        }
 
-        axiosPublic.post('/carts', product)
+        axiosPublic.post('/carts', productData)
             .then(res => {
                 if (res.data.insertedId) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Product added to Cart!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                    
+
+                    //update status in sales collection
+                    axiosPublic.put(`/product/update/${product._id}`, { status: 'checkout' })
+                    refetch();                    
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Product added to Cart!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     //navigate('/dashboard/allProducts');
                 }
+               
             })
+
+            
     }
     return (
         <div className="h-screen">
@@ -42,7 +56,7 @@ const SalesCollection = () => {
             </Helmet>
             <h2 className="text-3xl font-bold">Sales Collection Total Products: {products.length}</h2>
             <Search data={products} onSearch={handleSearch} />
-            
+
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -55,6 +69,7 @@ const SalesCollection = () => {
                             <th>Quantity</th>
                             <th>Discount</th>
                             <th>Selling Price</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -86,12 +101,24 @@ const SalesCollection = () => {
                                 <td>
                                     {product.sellingPrice}
                                 </td>
-                                <th>
-                                    <button onClick={() => handleAddToCart(product)} className="btn btn-warning btn-xs">Add for Checkout</button>
-                                    <Link to='/dashboard/checkout'>
-                                        <button className="btn btn-warning btn-xs">Proceed to checkout</button>
-                                    </Link>
-                                </th>
+                                <td>{product?.status}</td>
+                                <td>
+                                    {
+                                        <button onClick={() => handleAddToCart(product)}
+                                            disabled={product?.status === 'checkout' || product?.status === 'sold'}
+                                            className="btn btn-warning btn-xs">Add for Checkout</button>
+                                    }
+                                    {product.status !== 'sold' ? (
+                                        <Link to="/dashboard/checkout">
+                                            <button className="btn btn-warning btn-xs">Proceed to checkout</button>
+                                        </Link>
+                                    ) : (
+                                        <button className="btn btn-warning btn-xs" disabled>
+                                            Proceed to checkout
+                                        </button>
+                                    )}
+                                </td>
+                                
                             </tr>)
                         }
 

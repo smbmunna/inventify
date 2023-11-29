@@ -15,10 +15,10 @@ const Home = () => {
                 <title>Inventify | Home Page</title>
             </Helmet>
             <Banner/>
-            <WhyUs/>
-            <GetInTouch/>
+            <WhyUs/>           
             <Speciality/>
-            <Packages/>            
+            <Packages/>   
+            <GetInTouch/>         
             <OurLocation/>
             <Testimonials/>
         </div>

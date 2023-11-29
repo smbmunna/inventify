@@ -4,7 +4,7 @@ import { FaMobileAlt } from 'react-icons/fa';
 
 const GetInTouch = () => {
     return (
-        <div className='mx-8 md:mx-0 my-8 md:my-32 bg-[#e6e4e4b0] py-4'>
+        <div className='max-w-screen-xl mx-auto my-16 bg-[#AEFFF1] py-4'>
             <h1 className="text-3xl font-bold text-gray-700 text-center my-4 md:mb-4">Fix a Demo</h1>
             <div className='md:grid md:grid-cols-3 items-center'>
                 <div className='md:col-span-1'>

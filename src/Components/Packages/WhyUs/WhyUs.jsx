@@ -3,7 +3,7 @@ import { HiBellAlert } from "react-icons/hi2";
 import { FaMobileAlt } from "react-icons/fa";
 const WhyUs = () => {
     return (
-        <div className="mx-4 md:mx-0 md:my-32">
+        <div className="max-w-screen-xl mx-auto my-16">
             <h1 className="text-4xl font-bold text-gray-700 text-center my-8 md:mb-10">What makes us Special</h1>
             <div className="lg:grid lg:grid-cols-3 lg:justify-center lg:gap-28">
                 <div className="flex gap-4 items-center mb-8 md:mb-0">

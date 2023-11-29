@@ -6,7 +6,7 @@ const Banner = () => {
     return (
         <div>
             <Carousel>
-                <div>
+                <div >
                     <img src="https://i.ibb.co/hcgTCBG/cova-software-Sdlsfst-OQZM-unsplash.jpg" />                    
                 </div>
                 <div>
