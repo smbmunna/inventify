@@ -9,7 +9,7 @@ const Navbar = () => {
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>
     } 
-    console.log(usersShop);
+    
 
     const handleLogout = () => {
         logoutUser()

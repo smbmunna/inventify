@@ -13,7 +13,7 @@ const AdminRoutes = ({children}) => {
     if (user && isAdmin) {
         return children;
     }
-    return <Navigate to='/' state={{location}} replace></Navigate>
+    return <Navigate to='/notAuthorized' state={{location}} replace></Navigate>
 };
 
 export default AdminRoutes;

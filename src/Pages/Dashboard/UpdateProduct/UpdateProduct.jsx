@@ -31,7 +31,8 @@ const UpdateProduct = () => {
         //update image
         axiosPublic.put(`/product/update/${product._id}`, {productImageLink: imageLink})
         .then(res=>{
-           if(res.data.modifiedCount>0){
+            console.log(res.data);
+           if(res.data.acknowledged){
             Swal.fire({
                 position: "top-end",
                 icon: "success",

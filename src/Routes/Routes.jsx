@@ -24,6 +24,7 @@ import SalesOverview from "../Pages/Dashboard/SalesOverview/SalesOverview";
 import ProductMangement from "../Pages/Dashboard/ProductManagement/ProductMangement";
 import AdminRoutes from "./AdminRoutes";
 import ShopDetails from "../Pages/Dashboard/ShopDetails/ShopDetails";
+import NotAuthorized from "../Pages/NotAuthorized/NotAuthorized";
 
 
 
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path: '/registration',
                 element: <Registration/>
+            },
+            {
+                path: '/notAuthorized',
+                element: <NotAuthorized/>
             }, 
             {
                 path: 'createShop',
@@ -54,6 +59,7 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard',
         element: <PrivateRoutes><Dashboard/></PrivateRoutes>,
+        // errorElement: <PrivateRoutes><NotAuthorized/></PrivateRoutes>,
         children: [
             {
                 path: 'productManagement',
