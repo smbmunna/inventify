@@ -5,7 +5,7 @@ import { FaMobileAlt } from "react-icons/fa";
 const Footer = () => {
     return (
         <div>
-            <footer className="footer footer-center p-10 bg-[#666666] text-white mt-8">
+            <footer className="footer footer-center p-10 bg-[#6f42c1] text-white mt-8">
                 <aside>
                     <img className="w-24" src="https://i.ibb.co/SmqxgJq/Black-White-Modern-Online-Shop-Logo.png" alt="" />
                     <p className="font-semibold">

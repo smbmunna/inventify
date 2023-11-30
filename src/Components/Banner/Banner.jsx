@@ -1,21 +1,14 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-
-
 const Banner = () => {
     return (
-        <div>
-            <Carousel>
-                <div >
-                    <img src="https://i.ibb.co/hcgTCBG/cova-software-Sdlsfst-OQZM-unsplash.jpg" />                    
+        <div className="hero h-[450px]" style={{ backgroundImage: 'url(https://i.ibb.co/5n33q2k/cova-software-Sdlsfst-OQZM-unsplash-1.jpg)' }}>
+            <div className="hero-overlay bg-opacity-75"></div>
+            <div className="hero-content text-center text-neutral-content">
+                <div className="">
+                    <h1 className="mb-5 text-3xl md:text-6xl font-bold text-white">Inventify</h1>
+                    <p className="mb-5 text-xl md:text-3xl font-bold text-white">MultiStore Inventory Management System</p>
+                    <p className="mb-5 text-lg md:text-2xl font-semibold text-white">Keep track of inventory levels in real time to avoid overstocking or stockouts.</p>                    
                 </div>
-                <div>
-                    <img src="https://i.ibb.co/qNyhzDr/cova-software-z-Ue3lwqr-RIU-unsplash.jpg" />                    
-                </div>
-                <div>
-                    <img src="https://i.ibb.co/D5ZN3BX/simon-kadula-gknd-M1-Gv-SA-unsplash.jpg" />                    
-                </div>
-            </Carousel>
+            </div>
         </div>
     );
 };

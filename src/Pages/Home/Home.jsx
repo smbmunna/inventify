@@ -14,13 +14,13 @@ const Home = () => {
             <Helmet>
                 <title>Inventify | Home Page</title>
             </Helmet>
-            <Banner/>
+            <Banner />
             <WhyUs/>           
             <Speciality/>
             <Packages/>   
             <GetInTouch/>         
             <OurLocation/>
-            <Testimonials/>
+            {/* <Testimonials/> */}
         </div>
     );
 };
