@@ -16,11 +16,11 @@ const SalesHistory = () => {
     }   
     return (
         <div>
-            <h2 className="text-3xl font-bold my-8">Sales History: {sortedSalesCollection[0].length}</h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8 ">Sales History</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="text-lg">
                         <tr>
                             <th> Serial.</th>                            
                             <th>Product Name</th>
@@ -28,7 +28,7 @@ const SalesHistory = () => {
                             <th>Profit</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-lg">
                         {
                             sortedSalesCollection[0].map((product, index) => <tr key={parseInt(product._id)}>
                                 <th>
@@ -39,7 +39,7 @@ const SalesHistory = () => {
                                     {product.addDate}
                                 </td>
                                 <td>
-                                   {product.sellingPrice - product.costPrice}
+                                   {(product.sellingPrice - product.costPrice).toFixed(2)}
                                 </td>                              
                             </tr>)
                         }

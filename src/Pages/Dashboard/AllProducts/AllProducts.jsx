@@ -47,11 +47,11 @@ const AllProducts = () => {
             <Helmet>
                 <title>Dashboard | All Products</title>
             </Helmet>
-            <h2 className="text-3xl font-bold">List of all products:{products.length} </h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8">Total Products:{products.length} </h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="text-xl">
                         <tr>
                             <th>
                                 <label>
@@ -65,7 +65,7 @@ const AllProducts = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-lg">
                         {
                             products.map((product, index) => <tr key={product._id}>
                                 <th>
@@ -91,9 +91,9 @@ const AllProducts = () => {
                                 </td>
                                 <th>
                                     <Link to={`/dashboard/updateProduct/${product._id}`}>
-                                        <button className="btn btn-ghost btn-xs">Update</button>
+                                        <button className="btn text-white rounded-none bg-[#6f42c1] btn-xs">Update</button>
                                     </Link>
-                                    <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-ghost btn-xs">Delete</button>
+                                    <button onClick={() => handleDeleteProduct(product._id)} className="btn text-white rounded-none bg-red-600 btn-xs">Delete</button>
                                 </th>
                             </tr>)
                         }

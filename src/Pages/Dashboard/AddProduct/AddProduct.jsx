@@ -98,10 +98,10 @@ const AddProduct = () => {
             <Helmet>
                 <title>Dashboard | Add Product</title>
             </Helmet>
-            <h2 className="text-3xl font-bold">Add Product</h2>
-            <form className="mx-auto w-3/4" onSubmit={handleSubmit(onSubmit)}>
+            <h2 className="text-4xl font-bold text-[#6f42c1]">Add Product</h2>
+            <form className=" mx-auto w-1/2" onSubmit={handleSubmit(onSubmit)}>
                 <label className="label">
-                    <span className="label-text">Product Name</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Product Name</span>
                 </label>
                 <input
                     type="text"
@@ -114,7 +114,7 @@ const AddProduct = () => {
 
 
                 <label className="label">
-                    <span className="label-text">Product Image</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Product Image</span>
                 </label>
                 <input
                     type="file"
@@ -127,7 +127,7 @@ const AddProduct = () => {
 
 
                 <label className="label">
-                    <span className="label-text">Product Quantity</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Product Quantity</span>
                 </label>
                 <input
                     type="number"
@@ -139,7 +139,7 @@ const AddProduct = () => {
                 {errors.productQty && <span className="text-red-500 mx-2">Product Quantity is required</span>}
 
                 <label className="label">
-                    <span className="label-text">Product Description</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Product Description</span>
                 </label>
                 <textarea
                     type="text"
@@ -151,7 +151,7 @@ const AddProduct = () => {
                 {errors.productDescription && <span className="text-red-500 mx-2">Product Description is required</span>}
 
                 <label className="label">
-                    <span className="label-text">Product Location</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Product Location</span>
                 </label>
                 <input
                     type="text"
@@ -164,7 +164,7 @@ const AddProduct = () => {
 
 
                 <label className="label">
-                    <span className="label-text">Production Cost / Buying Price</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Production Cost / Buying Price</span>
                 </label>
                 <input
                     type="number"
@@ -177,7 +177,7 @@ const AddProduct = () => {
 
 
                 <label className="label">
-                    <span className="label-text">Profit Margin</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Profit Margin</span>
                 </label>
                 <input
                     type="text"
@@ -189,7 +189,7 @@ const AddProduct = () => {
                 {errors.profitMargin && <span className="text-red-500 mx-2">Profit Margin is required</span>}
 
                 <label className="label">
-                    <span className="label-text">Discount %</span>
+                    <span className="label-text text-xl font-semibold text-gray-600">Discount %</span>
                 </label>
                 <input
                     type="number"
@@ -204,7 +204,7 @@ const AddProduct = () => {
 
 
                 <br />
-                <input className="btn bg-[#78bc16] w-40 my-4" type="submit" value="Add Product" />
+                <input className="btn text-white rounded-none bg-[#6f42c1] w-40 my-4" type="submit" value="Add Product" />
             </form>
         </div>
     );

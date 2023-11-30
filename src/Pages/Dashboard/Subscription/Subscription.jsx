@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Subscription = () => {
     return (
         <div>
-            <h1 className='text-3xl font-bold my-8'>Choose from the following Subscription Plans</h1>
-            <div className='lg:grid grid-cols-3 gap-8'>
+            <h1 className='text-4xl font-bold text-[#6f42c1] my-8'>Choose from the following Subscription Plans</h1>
+            <div className='lg:grid grid-cols-3 gap-8 my-8'>
                 {/* card 01 */}
-                <div className='lg:w-3/4' data-aos="zoom-in-down" data-aos-duration="1000">
+                <div className='lg:w-3/4' >
                     <div className="py-10 bg-violet-600 text-white pl-4 ">
                         <h2 className="text-4xl font-semibold">Standard</h2>
                         <hr className='w-full' />
@@ -20,13 +20,13 @@ const Subscription = () => {
                             <p className='text-3xl font-bold'>200</p>
                         </div>
                         <Link to={`/dashboard/payment/10/200`} >
-                            <button className='btn btn-primary'>Subscribe</button>
+                            <button className='btn text-white rounded-none bg-[#6f42c1]'>Subscribe</button>
                         </Link>
                     </div>
                 </div>
 
                 {/* card 02 */}
-                <div className='lg:w-3/4' data-aos="zoom-in-down" data-aos-duration="1000">
+                <div className='lg:w-3/4' >
                     <div className="py-10 bg-violet-600 text-white pl-4 ">
                         <h2 className="text-4xl font-semibold">Gold</h2>
                         <hr className='w-full' />
@@ -39,13 +39,13 @@ const Subscription = () => {
                             <p className='text-3xl font-bold'>450</p>
                         </div>
                         <Link to={`/dashboard/payment/20/450`}>
-                            <button className='btn btn-primary'>Subscribe</button>
+                            <button className='btn text-white rounded-none bg-[#6f42c1]'>Subscribe</button>
                         </Link>
                     </div>
                 </div>
 
                 {/* card 03 */}
-                <div className='lg:w-3/4' data-aos="zoom-in-down" data-aos-duration="1000">
+                <div className='lg:w-3/4'>
                     <div className="py-10 bg-violet-600 text-white pl-4 ">
                         <h2 className="text-4xl font-semibold">Platinum</h2>
                         <hr className='w-full' />
@@ -58,7 +58,7 @@ const Subscription = () => {
                             <p className='text-3xl font-bold'>1500</p>
                         </div>
                         <Link to={`/dashboard/payment/50/1500`}>
-                            <button className='btn btn-primary'>Subscribe</button>
+                            <button className='btn text-white rounded-none bg-[#6f42c1]'>Subscribe</button>
                         </Link>
                     </div>
                 </div>

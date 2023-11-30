@@ -54,13 +54,13 @@ const SalesCollection = () => {
             <Helmet>
                 <title>Dashboard | Sales Collection</title>
             </Helmet>
-            <h2 className="text-3xl font-bold">Sales Collection Total Products: {products.length}</h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8">Sales Collection</h2>
             <Search data={products} onSearch={handleSearch} />
 
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="text-lg">
                         <tr>
                             <th> Serial.</th>
                             <th> Product Id:</th>
@@ -73,7 +73,7 @@ const SalesCollection = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="">
                         {
                             searchResults.map((product, index) => <tr key={product._id}>
                                 <th>
@@ -99,21 +99,21 @@ const SalesCollection = () => {
                                     {product.discount}
                                 </td>
                                 <td>
-                                    {product.sellingPrice}
+                                    {product.sellingPrice.toFixed(2)}
                                 </td>
                                 <td>{product?.status}</td>
                                 <td>
                                     {
                                         <button onClick={() => handleAddToCart(product)}
                                             disabled={product?.status === 'checkout' || product?.status === 'sold'}
-                                            className="btn btn-warning btn-xs">Add for Checkout</button>
+                                            className="btn text-white rounded-none bg-[#6f42c1] btn-xs">Add for Checkout</button>
                                     }
                                     {product.status !== 'sold' ? (
                                         <Link to="/dashboard/checkout">
-                                            <button className="btn btn-warning btn-xs">Proceed to checkout</button>
+                                            <button className="btn text-white rounded-none bg-[#6f42c1] btn-xs my-2">Proceed to checkout</button>
                                         </Link>
                                     ) : (
-                                        <button className="btn btn-warning btn-xs" disabled>
+                                        <button className="btn text-white rounded-none bg-[#6f42c1] btn-xs my-2" disabled>
                                             Proceed to checkout
                                         </button>
                                     )}

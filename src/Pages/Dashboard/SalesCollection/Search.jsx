@@ -19,7 +19,7 @@ const Search = ({ data, onSearch }) => {
             onChange={(e)=>setQuery(e.target.value)}
             />
 
-            <button className="btn bg-[#78bc16] w-40 my-4" onClick={handleSearch}>Search</button>
+            <button className="btn text-white rounded-none bg-[#6f42c1] w-40 my-4" onClick={handleSearch}>Search</button>
         </div>
     );
 };

@@ -86,12 +86,12 @@ const Checkout = () => {
             <Helmet>
                 <title>Dashboard | Check Out</title>
             </Helmet>
-            <h2>Checkout Product {cart.length}</h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8">Checkout Product {cart.length}</h2>
             <div className="h-screen">
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}
-                        <thead>
+                        <thead  className="text-lg">
                             <tr>
                                 <th> Serial.</th>
                                 <th> Product Id:</th>
@@ -129,10 +129,10 @@ const Checkout = () => {
                                         {product.discount}
                                     </td>
                                     <td>
-                                        {product.sellingPrice}
+                                        {product.sellingPrice.toFixed(2)}
                                     </td>
                                     <th>
-                                        <button onClick={() => handleGetPaid(product)} className="btn btn-warning btn-xs">Get Paid</button>
+                                        <button onClick={() => handleGetPaid(product)} className="btn text-white rounded-none bg-[#6f42c1] btn-xs">Get Paid</button>
                                     </th>
                                 </tr>)
                             }
