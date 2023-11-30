@@ -1,3 +1,5 @@
+import { BsEnvelopePaper, BsFillHouseFill } from "react-icons/bs";
+import { FaMobileAlt } from "react-icons/fa";
 
 
 const Footer = () => {
@@ -7,8 +9,20 @@ const Footer = () => {
                 <aside>
                     <img className="w-24" src="https://i.ibb.co/SmqxgJq/Black-White-Modern-Online-Shop-Logo.png" alt="" />
                     <p className="font-semibold">
-                       <span className="text-lg">Inventify Inventory Management</span> <br />Providing reliable tech since 2023
+                        <span className="text-lg">Inventify Inventory Management</span> 
                     </p>
+                    <div className="flex items-center gap-4">
+                        <BsFillHouseFill className="text-lg" />
+                        <p className="">Sector 04, Uttara, Dhaka 1230</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <FaMobileAlt className="text-lg" />
+                        <p className="">+789 558 69 85 +789 023 58 96</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <BsEnvelopePaper className="text-lg" />
+                        <p className="">support@example.com</p>
+                    </div>
                     <p>Copyright © 2023 Mahmud Munna - All right reserved</p>
                 </aside>
                 <nav>

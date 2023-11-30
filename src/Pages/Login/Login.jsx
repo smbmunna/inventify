@@ -6,16 +6,19 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useShopUser from '../../hooks/useShopUser';
+
+
 
 
 const Login = () => {
-    const { loginUser, googleLogin } = useAuth();
+    const { user, loginUser, googleLogin } = useAuth();
     const [loginError, setLoginError] = useState('');
-    const axiosPublic= useAxiosPublic();
-
+    const axiosPublic = useAxiosPublic();
     //Redirect user to desired path
-    const location = useLocation();
+
     const navigate = useNavigate();
+
 
     const handleLogin = event => {
         event.preventDefault();
@@ -25,8 +28,19 @@ const Login = () => {
 
         setLoginError('');
 
-        loginUser(email, password)
+       loginUser(email, password)
             .then(res => {
+                axiosPublic.get(`/shops/${email}`)
+                    .then(res => {
+                        if(res.data?.shopInfo){
+                            navigate('/dashboard');
+                        }else{
+                            navigate('/createShop');
+                        }
+                    }
+                    
+                    )
+
                 console.log('Login success: ', res.user);
                 Swal.fire({
                     position: "top-end",
@@ -35,7 +49,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate(location.state ? location.state : '/')
+
             })
             .catch(err => {
                 setLoginError(err.message);
@@ -46,9 +60,9 @@ const Login = () => {
         googleLogin()
             .then(res => {
                 console.log('google login success: ', res.user.displayName);
-                const userInfo={
-                    name:res.user?.displayName, 
-                    email:res.user?.email, 
+                const userInfo = {
+                    name: res.user?.displayName,
+                    email: res.user?.email,
                 }
                 axiosPublic.post('/users', userInfo)
                 Swal.fire({
@@ -58,7 +72,6 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate(location.state ? location.state : '/')
             })
             .catch(error => {
                 console.log(error.message);
