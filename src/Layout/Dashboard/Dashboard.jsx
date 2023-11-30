@@ -2,22 +2,35 @@ import { Helmet } from "react-helmet-async";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import useShopUser from "../../hooks/useShopUser";
+import useShop from "../../hooks/useShop";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [usersShop] = useShopUser();
-    console.log(usersShop);
+    const [shops]= useShop();
+    console.log(isAdmin);
     const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/'>Homepage</NavLink></li>
+        <div className="divider font-bold">Products</div>
         <li><NavLink to='/dashboard/productManagement'>Product Management</NavLink></li>
         <li><NavLink to='/dashboard/addProduct' >Add Product</NavLink></li>
-        <li><NavLink to='/dashboard/salesCollection'>Sales Collection</NavLink></li>
         <li><NavLink to='/dashboard/allProducts'>All Products</NavLink></li>
+        <div className="divider font-bold">Sales</div>
+        <li><NavLink to='/dashboard/salesCollection'>Sales Collection</NavLink></li>
         <li><NavLink to='/dashboard/checkout'>Check Out</NavLink></li>
-        <li><NavLink to='/dashboard/subscription'>Subscribe</NavLink></li>
         <li><NavLink to='/dashboard/salesSummary'>Sales Summary</NavLink></li>
-        <li><NavLink to='/dashboard/ManageShop'>Manage Shop</NavLink></li>
-        <li><NavLink to='/dashboard/salesOverview'>Sale-Summary</NavLink></li>
+        <div className="divider font-bold">Subscription</div>
+        <li><NavLink to='/dashboard/subscription'>Subscription Packages</NavLink></li>
+        {
+            isAdmin &&
+            <>
+                <div className="divider font-bold">Admin</div>
+                <li><NavLink to='/dashboard/ManageShop'>Manage Shop</NavLink></li>
+                <li><NavLink to='/dashboard/salesOverview'>Sale-Summary</NavLink></li>
+                <div className="divider font-bold">Registered Shops</div>
+                
+            </>
+        }
     </>
     return (
         <div className="gap-10 ">

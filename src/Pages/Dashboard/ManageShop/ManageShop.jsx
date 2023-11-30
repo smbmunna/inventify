@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useShop from "../../../hooks/useShop";
 
 
@@ -23,6 +24,7 @@ const ManageShop = () => {
                                 <th>shop Logo</th>
                                 <th>Product Limit</th>
                                 <th>Shop Description</th>
+                                <th></th>
                                 <th>Send Notice</th>
                             </tr>
                         </thead>
@@ -49,6 +51,9 @@ const ManageShop = () => {
                                     </td>
                                     <td>
                                         {shop.shopInfo}
+                                    </td>
+                                    <td>
+                                       <Link to={`/dashboard/products/shop/${shop._id}`} className="btn btn-ghost">Product List</Link>
                                     </td>
                                     <td>
                                         <button onClick={() => handleSendNotice()} className="btn btn-warning btn-xs">Send Notice</button>

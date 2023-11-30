@@ -24,7 +24,9 @@ const ProductMangement = () => {
                     </div> :
                     <div >
                         <p className="text-lg my-4  join-item">Total <span className="text-xl text-pink-700 font-bold">{products.length}</span> products added.</p>
-                        <button className="btn join-item">Add a Product</button>
+                        <Link to='/dashboard/addProduct'>
+                            <button className="btn join-item">Add a Product</button>
+                        </Link>
                     </div>
 
 

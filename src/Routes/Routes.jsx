@@ -23,6 +23,8 @@ import ManageShop from "../Pages/Dashboard/ManageShop/ManageShop";
 import SalesOverview from "../Pages/Dashboard/SalesOverview/SalesOverview";
 import ProductMangement from "../Pages/Dashboard/ProductManagement/ProductMangement";
 import AdminRoutes from "./AdminRoutes";
+import ShopDetails from "../Pages/Dashboard/ShopDetails/ShopDetails";
+
 
 
 export const router = createBrowserRouter([
@@ -64,6 +66,7 @@ export const router = createBrowserRouter([
             {
                 path: 'allProducts',
                 element: <PrivateRoutes> <AllProducts/></PrivateRoutes>
+                
             },
             {
                 path: 'salesCollection',
@@ -101,7 +104,12 @@ export const router = createBrowserRouter([
             {
                 path:'salesOverview', 
                 element: <AdminRoutes><SalesOverview/></AdminRoutes>
+            },
+            {
+                path:'products/shop/:shopId',
+                element: <AdminRoutes><ShopDetails/></AdminRoutes>
             }
+            
         ]
     }
 ]);
