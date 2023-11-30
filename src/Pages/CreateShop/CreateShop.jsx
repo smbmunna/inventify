@@ -4,11 +4,14 @@ import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateShop = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
+
+    const navigate= useNavigate();
     
     //------------------For image upload-------------------------
     const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -87,6 +90,8 @@ const CreateShop = () => {
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
+
+                                navigate('/dashboard');
                             }
 
                         })
@@ -97,12 +102,12 @@ const CreateShop = () => {
     }
 
     return (
-        <div className="grid">
+        <div className="grid justify-center">
             <Helmet>
                 <title>Inventify | Create Shop</title>
             </Helmet>
             <h2 className="text-3xl font-bold text-center my-8">Create Shop</h2>
-            <form className="mx-auto w-3/4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="mx-auto w-4/3" onSubmit={handleSubmit(onSubmit)}>
                 <label className="label">
                     <span className="label-text">Shop Name</span>
                 </label>
@@ -191,7 +196,7 @@ const CreateShop = () => {
                 />
 
                 <br />
-                <input className="btn bg-[#78bc16] w-20 my-4" type="submit" />
+                <input className="btn text-white rounded-none bg-[#6f42c1] w-20 my-4" type="submit" />
             </form>
         </div>
     );
