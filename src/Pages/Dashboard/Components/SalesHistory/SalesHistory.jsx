@@ -6,10 +6,11 @@ const SalesHistory = () => {
 
     //for pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 4;
+    const itemsPerPage = 3;
 
+    //console.log(salesCollection)
 
-    //sorting by add date
+    //sorting by add    date
     const sortedSalesCollection = [salesCollection].sort((a, b) => {
         const dateA = new Date(a.addDate);
         const dateB = new Date(b.addDate);

@@ -30,7 +30,7 @@ const GetInTouch = () => {
                             <input type="text" placeholder="Your message" className="input input-bordered rounded-none text-black " required />
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primarybtn  bg-[#2c2c2c91] text-xl text-white dark:border-none rounded-none">Submit</button>
+                            <button className="btn btn-primarybtn  bg-[#2c2c2c91] text-xl text-white border-none rounded-none">Submit</button>
                         </div>
                     </form>
                 </div>
