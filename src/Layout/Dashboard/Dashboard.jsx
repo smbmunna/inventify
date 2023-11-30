@@ -29,18 +29,16 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/checkout'>Check Out</NavLink></li>
         <li><NavLink to='/dashboard/salesSummary'>Sales Summary</NavLink></li>
         <div className="divider font-bold">Subscription</div>
-        <li><NavLink to='/dashboard/subscription'>Subscription Packages</NavLink></li>
-        <button className="font-bold text-red-200" onClick={handleLogout}>Logout</button>
+        <li><NavLink to='/dashboard/subscription'>Subscription Packages</NavLink></li>        
         {
             isAdmin &&
             <>
                 <div className="divider font-bold">Admin</div>
                 <li><NavLink to='/dashboard/ManageShop'>Manage Shop</NavLink></li>
                 <li><NavLink to='/dashboard/salesOverview'>Sale-Summary</NavLink></li>
-                <div className="divider font-bold">Registered Shops</div>
-                
             </>
         }
+        <button className="font-bold text-red-200" onClick={handleLogout}>Logout</button>
     </>
     return (
         <div className="gap-10 ">

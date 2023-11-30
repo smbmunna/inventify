@@ -12,12 +12,12 @@ const ManageShop = () => {
     }
     return (
         <div>
-            <h2>Manage Shop{shops.length}</h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8 ">Manage Shop: Total: {shops.length} Shops</h2>
             <div className="h-screen">
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}
-                        <thead>
+                        <thead className="text-lg">
                             <tr>
                                 <th> Serial.</th>
                                 <th>Shop Name</th>
@@ -28,7 +28,7 @@ const ManageShop = () => {
                                 <th>Send Notice</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="text-lg">
                             {
                                 shops.map((shop, index) => <tr key={shop._id}>
                                     <th>
@@ -53,10 +53,10 @@ const ManageShop = () => {
                                         {shop.shopInfo}
                                     </td>
                                     <td>
-                                       <Link to={`/dashboard/products/shop/${shop._id}`} className="btn btn-ghost">Product List</Link>
+                                       <Link to={`/dashboard/products/shop/${shop._id}`} className="btn btn-xs text-white rounded-none bg-[#6f42c1]">Product List</Link>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleSendNotice()} className="btn btn-warning btn-xs">Send Notice</button>
+                                        <button onClick={() => handleSendNotice()} className="btn btn-warning btn-xs rounded-none">Send Notice</button>
                                     </td>
                                 </tr>)
                             }

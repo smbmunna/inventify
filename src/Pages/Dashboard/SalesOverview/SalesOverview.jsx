@@ -9,7 +9,7 @@ const SalesOverview = () => {
     
     //for pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 2; // You can adjust this based on your preference
+    const itemsPerPage = 3; 
 
 
     const [users, isLoading] = useUsers();
@@ -29,15 +29,15 @@ const SalesOverview = () => {
     
     return (
         <div>
-            <h2 className="text-3xl font-bold">Sales Overview </h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8 ">Sales Overview (For Admin Only!) </h2>
 
             <SysAdminSalesStat />
 
-            <h2 className="text-3xl font-bold">Users Information :{users.length} </h2>
+            <h2 className="text-4xl font-bold text-[#6f42c1] my-8 ">Users Information :{users.length} Users </h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="text-lg">
                         <tr>
                             <th> Serial.</th>
                             <th>User Name</th>
@@ -45,7 +45,7 @@ const SalesOverview = () => {
                             <th>Role</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-lg">
                         {
                             currentItems.map((user, index) => <tr key={user._id}>
                                 <th>

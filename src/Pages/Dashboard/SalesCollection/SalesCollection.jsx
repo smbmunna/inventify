@@ -50,7 +50,7 @@ const SalesCollection = () => {
             
     }
     return (
-        <div className="h-screen">
+        <div className="h-vh">
             <Helmet>
                 <title>Dashboard | Sales Collection</title>
             </Helmet>

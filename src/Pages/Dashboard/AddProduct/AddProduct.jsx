@@ -94,7 +94,7 @@ const AddProduct = () => {
 
 
     return (
-        <div className="h-screen">
+        <div className="h-vh">
             <Helmet>
                 <title>Dashboard | Add Product</title>
             </Helmet>

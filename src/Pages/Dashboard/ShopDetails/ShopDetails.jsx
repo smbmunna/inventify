@@ -19,11 +19,11 @@ const ShopDetails = () => {
     //console.log(products)
     return (
         <div>
-            <h1>Product list for :{products.length}</h1>
+            <h1 className="text-4xl font-bold text-[#6f42c1] my-8 ">Total Products:{products.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className="text-lg">
                         <tr>
                             <th>
                                 <label>
@@ -34,10 +34,9 @@ const ShopDetails = () => {
                             <th>Product Name</th>
                             <th>Quantity</th>
                             <th>Sale Count</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="text-lg">
                         {
                             products.map((product, index) => <tr key={product._id}>
                                 <th>
@@ -61,8 +60,6 @@ const ShopDetails = () => {
                                 <td>
                                     {product.saleCount}
                                 </td>
-                                <th>
-                                </th>
                             </tr>)
                         }
 
