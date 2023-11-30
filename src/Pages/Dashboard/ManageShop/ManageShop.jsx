@@ -40,7 +40,7 @@ const ManageShop = () => {
     return (
         <div>
             <h2 className="text-4xl font-bold text-[#6f42c1] my-8 ">Manage Shop: Total: {shops.length} Shops</h2>
-            <div className="h-screen">
+            <div className="h-vh">
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}
