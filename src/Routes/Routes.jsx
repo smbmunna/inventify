@@ -26,6 +26,7 @@ import AdminRoutes from "./AdminRoutes";
 import ShopDetails from "../Pages/Dashboard/ShopDetails/ShopDetails";
 import NotAuthorized from "../Pages/NotAuthorized/NotAuthorized";
 import Demo from "../Pages/Demo/Demo";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 
 
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes><Dashboard/></PrivateRoutes>,
         // errorElement: <PrivateRoutes><NotAuthorized/></PrivateRoutes>,
         children: [
+            {
+                path:'/dashboard',
+                element: <DashboardHome/>
+            },
             {
                 path: 'productManagement',
                 element: <PrivateRoutes><ProductMangement/></PrivateRoutes>

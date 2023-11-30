@@ -50,7 +50,7 @@ const Dashboard = () => {
                 <div className="drawer-content  text-center">
                     {/* Page content here */}
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open Sidebar</label>
-
+                    
                     {/* Dashboard content */}
                     <div className="pl-8 ">
                         <Outlet />
