@@ -4,10 +4,10 @@ import { FaMobileAlt } from 'react-icons/fa';
 
 const GetInTouch = () => {
     return (
-        <div className='max-w-screen-xl mx-auto my-16 bg-[#AEFFF1] py-4'>
+        <div className='max-w-screen-xl mx-auto my-16 bg-[#AEFFF1] py-4 '>
             <h1 className="text-3xl font-bold text-gray-700 text-center my-4 md:mb-4">Fix a Demo</h1>
             <div className='md:grid md:grid-cols-3 items-center'>
-                <div className='md:col-span-1'>
+                <div className='md:col-span-1' data-aos="flip-left" data-aos-duration="1000" >
                     <div className="bg-transparent pb-10 h-full text-gray-700 items-center pl-10">
                         <div className="flex items-center pt-10 mb-10  text-gray-700">
                             <HiOutlineLocationMarker className="text-3xl mr-3" />
@@ -27,7 +27,7 @@ const GetInTouch = () => {
                         </div>
                     </div>
                 </div>
-                <div className='md:col-span-2'>
+                <div className='md:col-span-2' data-aos="flip-right" data-aos-duration="1000" >
                     <form className="card-body ">
                         <h1 className='text-gray-700 text-xl font-bold'>Write to Us</h1>
                         <div className="form-control">
