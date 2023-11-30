@@ -6,7 +6,7 @@ import { FaMobileAlt } from 'react-icons/fa';
 
 const OurLocation = () => {
     return (
-        <div className=" mb-8 max-w-screen-xl mx-auto my-16">
+        <div className=" mb-8 max-w-screen-xl mx-auto my-16 bg-[#e5e7eb] py-4">
             <h1 className="font-bold text-4xl my-8 text-center text-[#6f42c1]">Come and Visit Us</h1>
             <div className="">
                 <div data-aos="zoom-in-up" data-aos-duration="1000" className="bg-[#0b0b0bbf] mx-auto mb-8 pb-10 md:w-1/3 h-full text-white items-center pl-10 ">

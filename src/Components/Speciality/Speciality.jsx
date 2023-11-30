@@ -13,7 +13,7 @@ const Speciality = () => {
     
 
     return (
-        <div className="max-w-screen-xl mx-auto ">
+        <div className="max-w-screen-xl mx-auto bg-[#e5e7eb] p-6">
             <div className="lg:grid lg:grid-cols-4  lg:items-center lg:gap-10">
                 <div data-aos="fade-right"  data-aos-duration="1000" className="lg:col-span-2 mx-4 text-center md:text-left mb-4 md:mb-0 md:mx-0">
                     <h1 className="font-bold text-4xl  text-[#6f42c1] mb-8 text-center md:text-left">Elevate your Store Management to the next level!</h1>
