@@ -3,12 +3,21 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import useShopUser from "../../hooks/useShopUser";
 import useShop from "../../hooks/useShop";
+import useAuth from "../../hooks/useAuth";
+import Footer from "../../Components/Footer/Footer";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [usersShop] = useShopUser();
-    const [shops]= useShop();
+    const {logoutUser}= useAuth();
     console.log(isAdmin);
+    
+    const handleLogout = () => {
+        logoutUser()
+            .then(() => console.log('user logged out'))
+            .catch(error => { console.log(error.message) })
+    }
+
     const links = <>
         <li><NavLink to='/'>Homepage</NavLink></li>
         <div className="divider font-bold">Products</div>
@@ -21,6 +30,7 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/salesSummary'>Sales Summary</NavLink></li>
         <div className="divider font-bold">Subscription</div>
         <li><NavLink to='/dashboard/subscription'>Subscription Packages</NavLink></li>
+        <button className="font-bold text-red-200" onClick={handleLogout}>Logout</button>
         {
             isAdmin &&
             <>
@@ -71,6 +81,7 @@ const Dashboard = () => {
                     </ul>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
