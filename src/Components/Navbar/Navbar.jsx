@@ -26,7 +26,7 @@ const Navbar = () => {
                 </>
             }
             
-            <Link className="btn mx-2 bg-[#6f42c1] text-white rounded-none" to='/'>Watch Demo</Link>
+            <Link className="btn mx-2 bg-[#6f42c1] text-white rounded-none" to='/demo'>Watch Demo</Link>
             {
                 usersShop ?
                     <Link className="btn mx-2 bg-[#6f42c1] text-white rounded-none" to='/dashboard'>Dashboard</Link>

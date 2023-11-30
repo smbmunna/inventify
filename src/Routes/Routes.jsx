@@ -25,6 +25,7 @@ import ProductMangement from "../Pages/Dashboard/ProductManagement/ProductMangem
 import AdminRoutes from "./AdminRoutes";
 import ShopDetails from "../Pages/Dashboard/ShopDetails/ShopDetails";
 import NotAuthorized from "../Pages/NotAuthorized/NotAuthorized";
+import Demo from "../Pages/Demo/Demo";
 
 
 
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home/>
+            },
+            {
+                path:'/demo',
+                element:<Demo/>
             },
             {
                 path:'/login',

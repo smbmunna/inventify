@@ -13,7 +13,7 @@ const CheckoutForm = ({ amount, limit }) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosPublic = useAxiosPublic();    //todo use axios secure
-    const totalPrice = amount;
+    const totalPrice = amount;        
     const { user } = useAuth();
     // console.log(amount);
     // console.log(limit);
@@ -87,6 +87,7 @@ const CheckoutForm = ({ amount, limit }) => {
                 axiosPublic.get('/adminInfo')
                     .then(res => {
                         const income = res.data.income;
+                        console.log(income);                        
                         //update admin income
                         axiosPublic.put(`/users/admin/income/${parseFloat(totalPrice)+parseFloat(income)}`)
 
@@ -98,7 +99,7 @@ const CheckoutForm = ({ amount, limit }) => {
                     .then(res => {
                         console.log('admin income updated')
                         //navigate to invoice page
-                        navigate('/dashboard/invoice')
+                        navigate('/dashboard')
                     })
             }
         }

@@ -3,7 +3,10 @@ import useUsers from "../../../hooks/useUsers";
 import SysAdminSalesStat from "../Components/SysAdminSalesStat/SysAdminSalesStat";
 
 
+
 const SalesOverview = () => {
+    
+    
     //for pagination
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 2; // You can adjust this based on your preference
@@ -23,7 +26,7 @@ const SalesOverview = () => {
 
 
 
-    console.log(users);
+    
     return (
         <div>
             <h2 className="text-3xl font-bold">Sales Overview </h2>
@@ -74,7 +77,7 @@ const SalesOverview = () => {
             {/* Pagination controls */}
             <div>
                 {Array.from({ length: Math.ceil(users.length / itemsPerPage) }).map((_, index) => (
-                    <button className="btn btn-warning btn-xs" key={index} onClick={() => paginate(index + 1)}>
+                    <button className="btn btn-warning btn-xs mx-2" key={index} onClick={() => paginate(index + 1)}>
                         {index + 1}
                     </button>
                 ))}

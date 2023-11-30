@@ -103,16 +103,16 @@ const Login = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                    <Link to='/registration'>New to This Site? <span className='font-bold  text-[#78bc16] '>Register</span></Link>
+                                    <Link to='/registration'>New to This Site? <span className='font-bold  text-[#6f42c1] '>Register</span></Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn text-white rounded-none bg-[#78bc16]  mt-4 ">Login</button>
+                                <button className="btn text-white rounded-none bg-[#6f42c1]  mt-4 ">Login</button>
                             </div>
                             <div>
                                 <button
                                     onClick={handleGoogleLogin}
-                                    className="btn text-white rounded-none bg-[#78bc16] mt-4 w-full ">
+                                    className="btn text-white rounded-none bg-[#6f42c1] mt-4 w-full ">
                                     <FcGoogle className="text-3xl" />  Google Login
                                 </button>
                             </div>

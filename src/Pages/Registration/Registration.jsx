@@ -131,11 +131,11 @@ const Registration = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                    <Link to='/login'>Already have Account? <span className='font-bold  text-[#78bc16] '>Login</span></Link>
+                                    <Link to='/login'>Already have Account? <span className='font-bold  text-[#6f42c1] '>Login</span></Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn text-white rounded-none bg-[#78bc16]  mt-4 ">Register</button>
+                                <button className="btn text-white rounded-none bg-[#6f42c1]  mt-4 ">Register</button>
                             </div>
                             <p className='text-red-500 text-center font-bold'>
                                 {regError}
