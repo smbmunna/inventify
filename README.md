@@ -1,10 +1,8 @@
 # Inventify Inventory Management System
-**[ Client Github Link](https://github.com/smbmunna/inventify)**
-<br>
+**[ Client Github Link](https://github.com/smbmunna/inventify)** || 
 **[ Client Live Link](https://fresh-bites-6a368.web.app/)**
 
-**[ Server Github Link](https://github.com/smbmunna/inventify-server)**
-<br>
+**[ Server Github Link](https://github.com/smbmunna/inventify-server)** ||
 **[ Server Live Link](https://inventify-server.vercel.app/)**
 
 ##  Project Overview: 
