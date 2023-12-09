@@ -103,7 +103,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                    <Link to='/registration'>New to This Site? <span className='font-bold  text-[#6f42c1] '>Register</span></Link>
+                                    <Link to='/registration'>New to This Site? <span className='font-bold  text-[#78bc16] '>Register</span></Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
