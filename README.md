@@ -25,11 +25,11 @@
 - Admin password: Admin@123
 
 ##  Technologies Used: 
-#### Frontend: 
 -  React.js
-- Tailwind as CSS Framework with Daisy UI as component library. 
-- Firebase for Authentication and Hosting. 
-
-#### Backend: 
+- Tanstack query for state management
+- Various react packages like email.js, js pdf etc.
+- Tailwind as CSS Framework with Daisy UI as component library
+- Firebase for Authentication and Hosting
 - Node with Express.js 
-- Mongodb for Database management. 
+- Mongodb for Database management.
+- Vercel for server-side deployment
