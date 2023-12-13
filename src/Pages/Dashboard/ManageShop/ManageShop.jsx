@@ -3,36 +3,47 @@ import useShop from "../../../hooks/useShop";
 import emailjs from 'emailjs-com';
 import Swal from "sweetalert2";
 
+
 const ManageShop = () => {
     const [shops, isLoading] = useShop();
 
 
-    const handleSendNotice=(shop)=>{
+    const handleSendNotice = (shop) => {
         const templateParams = {
             to_email: shop?.ownerEmail,
             subject: 'Promotional Email for Shop Owner',
             body: 'Hi this a promotional email for your shop offer.',
-          };
+        };
 
-          emailjs.send(
+        emailjs.send(
             'service_8z2fi7m',
             'template_xczwbz6',
             templateParams,
             'tMb2U4XqyPnnM1EZ2'
-          )
-          .then(response => {
-            if(response?.status){
-                Swal.fire({
-                    title: "Email Sent!",
-                    text: "Your Notice is sent through mail Successfully!",
-                    icon: "success"
-                  });
-            }
-          })
-          .catch(error => {
-            console.error('Error sending email', error);
-          });
+        )
+            .then(response => {
+                if (response?.status) {
+                    Swal.fire({
+                        title: "Email Sent!",
+                        text: "Your Notice is sent through mail Successfully!",
+                        icon: "success"
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error sending email', error);
+            });
     }
+
+    const handleSendSms = async () => {
+        console.log('sms sent'); 
+        Swal.fire({
+            title: "Sms Sent to Shop Manager!",
+            text: "Your SMS is sent Successfully!",
+            icon: "success"
+        });        
+    };
+
 
     if (isLoading) {
         return <span className="loading loading-bars loading-lg"></span>
@@ -80,10 +91,13 @@ const ManageShop = () => {
                                         {shop.shopInfo}
                                     </td>
                                     <td>
-                                       <Link to={`/dashboard/products/shop/${shop._id}`} className="btn btn-xs text-white rounded-none bg-[#6f42c1]">Product List</Link>
+                                        <Link to={`/dashboard/products/shop/${shop._id}`} className="btn btn-xs text-white rounded-none bg-[#6f42c1]">Product List</Link>
                                     </td>
                                     <td>
                                         <button onClick={() => handleSendNotice(shop)} className="btn btn-warning btn-xs rounded-none">Send Notice</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => handleSendSms()} className="btn btn-warning btn-xs rounded-none">Send SMS</button>
                                     </td>
                                 </tr>)
                             }
